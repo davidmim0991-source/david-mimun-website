@@ -473,6 +473,9 @@ const CONFIG = {
   if(cal) cal.href = CONFIG.CALENDLY || wa;  // until Calendly is set, book → WhatsApp
 })();
 
+/* ── warm up the bot the moment someone opens the page (hides cold start) ── */
+fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
+
 /* ── live demo widget → talks to the bot API ── */
 (function(){
   const msgs=document.getElementById("demoMsgs");
@@ -518,17 +521,17 @@ const CONFIG = {
     add(text,"me");
     const t=typing();
     let data=null;
-    // up to 3 attempts (handles cold-start 502 + slow first response)
-    for(let attempt=1; attempt<=3 && !data; attempt++){
+    // up to 5 attempts (handles Railway cold-start: container can take ~30-60s to wake)
+    for(let attempt=1; attempt<=5 && !data; attempt++){
       try{
-        data=await postChat(text, 45000);
+        data=await postChat(text, 60000);
       }catch(e){
-        if(attempt===3){
+        if(attempt===5){
           t.remove();
           add("אופס, יש רגע עומס על השרת של ההדגמה 😅 אפשר לנסות שוב, או פשוט לשלוח לי הודעה ישירות בוואטסאפ ואענה לך מיד.","bot");
           busy=false; input.focus(); return;
         }
-        await new Promise(r=>setTimeout(r, 1500)); // brief pause, then retry (warms the container)
+        await new Promise(r=>setTimeout(r, 2000)); // pause, then retry (container is waking up)
       }
     }
     sessionId=data.session_id||sessionId;
