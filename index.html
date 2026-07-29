@@ -463,16 +463,23 @@ const CONFIG = {
   CALENDLY: "https://calendly.com/davidmim0991/ai"  // book-call CTAs open this
 };
 
-/* ── wire up WhatsApp links ── */
+/* ── wire up WhatsApp links (number comes from the backend / Railway OWNER_WHATSAPP) ── */
 (function(){
-  const wa = `https://wa.me/${CONFIG.WHATSAPP}?text=${encodeURIComponent(CONFIG.WHATSAPP_MSG)}`;
-  ["waHero","waFinal","waForm","waFloat","waFooter"].forEach(id=>{
-    const el=document.getElementById(id); if(el) el.href=wa;
-  });
-  const cal=document.getElementById("calendlyBtn");
-  if(cal){ cal.removeAttribute("target"); cal.href="#demo";
-    cal.addEventListener("click",e=>{e.preventDefault(); if(window.bookViaBot) window.bookViaBot(); else location.href=wa;});
+  function wire(){
+    const wa = `https://wa.me/${CONFIG.WHATSAPP}?text=${encodeURIComponent(CONFIG.WHATSAPP_MSG)}`;
+    ["waHero","waFinal","waForm","waFloat","waFooter"].forEach(id=>{
+      const el=document.getElementById(id); if(el) el.href=wa;
+    });
+    const cal=document.getElementById("calendlyBtn");
+    if(cal){ cal.removeAttribute("target"); cal.href="#demo";
+      cal.onclick=e=>{e.preventDefault(); if(window.bookViaBot) window.bookViaBot(); else location.href=wa;};
+    }
   }
+  // Pull the live WhatsApp number from the backend, then wire (fallback to config default).
+  fetch(`${CONFIG.API_BASE}/api/config`).then(r=>r.json())
+    .then(c=>{ if(c && c.whatsapp) CONFIG.WHATSAPP=c.whatsapp; })
+    .catch(()=>{})
+    .finally(wire);
 })();
 
 /* ── warm up the bot the moment someone opens the page (hides cold start) ── */
