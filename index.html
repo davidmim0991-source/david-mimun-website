@@ -470,7 +470,9 @@ const CONFIG = {
     const el=document.getElementById(id); if(el) el.href=wa;
   });
   const cal=document.getElementById("calendlyBtn");
-  if(cal) cal.href = CONFIG.CALENDLY || wa;  // until Calendly is set, book → WhatsApp
+  if(cal){ cal.removeAttribute("target"); cal.href="#demo";
+    cal.addEventListener("click",e=>{e.preventDefault(); if(window.bookViaBot) window.bookViaBot(); else location.href=wa;});
+  }
 })();
 
 /* ── warm up the bot the moment someone opens the page (hides cold start) ── */
@@ -543,6 +545,12 @@ fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
   if(quick) quick.addEventListener("click",e=>{
     const b=e.target.closest("button"); if(b) send(b.dataset.q);
   });
+  // Expose so the "book a call" buttons can drive the demo bot into booking mode.
+  window.bookViaBot=function(){
+    const demo=document.getElementById("demoMsgs");
+    if(demo){ demo.scrollIntoView({behavior:"smooth", block:"center"}); }
+    setTimeout(()=>send("היי, אני רוצה לקבוע שיחת ייעוץ"), 400);
+  };
 })();
 
 /* ── lead form: opens WhatsApp with the details pre-filled (no backend) ── */
