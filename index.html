@@ -547,9 +547,10 @@ fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
   });
   // Expose so the "book a call" buttons can drive the demo bot into booking mode.
   window.bookViaBot=function(){
-    const demo=document.getElementById("demoMsgs");
-    if(demo){ demo.scrollIntoView({behavior:"smooth", block:"center"}); }
-    setTimeout(()=>send("היי, אני רוצה לקבוע שיחת ייעוץ"), 400);
+    const demo=document.getElementById("demo");
+    if(demo){ demo.scrollIntoView({behavior:"smooth", block:"start"}); }
+    // Kick the bot straight into booking: it should greet + offer real slots + ask day/time.
+    setTimeout(()=>send("אני רוצה לקבוע שיחת ייעוץ — מתי יש זמנים פנויים?"), 500);
   };
 })();
 
