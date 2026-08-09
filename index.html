@@ -168,15 +168,7 @@
   .final h2{font-size:clamp(28px,4vw,40px);font-weight:900;line-height:1.15;margin-bottom:16px}
   .final p{color:var(--muted);font-size:18px;margin-bottom:28px}
   .final .ctas{margin-bottom:0}
-  .form-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px}
-  .form-card h3{font-size:20px;margin-bottom:6px}
-  .form-card .fsub{color:var(--muted);font-size:14px;margin-bottom:20px}
-  .field{margin-bottom:14px}
-  .field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-  .field input,.field textarea{width:100%;background:#0c1320;border:1px solid var(--line2);border-radius:11px;padding:12px 14px;color:var(--fg);font-size:15px;font-family:inherit;outline:none}
-  .field input:focus,.field textarea:focus{border-color:rgba(0,229,192,.4)}
-  .field textarea{resize:vertical;min-height:80px}
-  .form-note{font-size:12px;color:var(--muted2);margin-top:10px;text-align:center}
+  
 
   /* footer */
   footer{border-top:1px solid var(--line);margin-top:70px;padding:40px 0 30px}
@@ -219,7 +211,7 @@
         <a href="#pricing">מחירים</a>
         <a href="#faq">שאלות נפוצות</a>
       </div>
-      <a class="nav-cta" href="#contact">קבעו שיחה</a>
+      <a class="nav-cta" href="#demo">קבעו שיחה</a>
       <button class="menu-btn" onclick="document.querySelector('.navlinks').style.display=document.querySelector('.navlinks').style.display==='flex'?'none':'flex'">☰</button>
     </nav>
   </div>
@@ -233,7 +225,7 @@
       <h1>שירות לקוחות ב‑WhatsApp<br>שמרגיש כמו <span class="grad">בן אדם אמיתי</span></h1>
       <p class="sub">אנחנו בונים לחנות שלך בוט AI שעונה ללקוחות תוך שניות, מסביב לשעון — בשפה טבעית וזורמת, בלי תפריטי כפתורים מעצבנים. חוסך לך אלפי שקלים בחודש על נציגי שירות, ולא מפספס אף לקוח.</p>
       <div class="ctas">
-        <a class="btn btn-primary" href="#contact">📅 קבעו שיחת ייעוץ חינם</a>
+        <a class="btn btn-primary" id="heroBookBtn" href="#demo">📅 קבעו שיחת ייעוץ חינם</a>
         <a class="btn btn-wa" id="waHero" href="#" target="_blank" rel="noopener">שלחו הודעה ב‑WhatsApp</a>
       </div>
       <div class="trust">
@@ -258,32 +250,6 @@
         <div class="f">כתבו הודעה…</div>
         <div class="cm-send">↩</div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ PROBLEM ══ -->
-<section id="problem" class="sec wrap">
-  <div class="sec-head">
-    <div class="kicker">למה זה כואב</div>
-    <h2>הלקוחות שלך רוצים תשובה <span class="grad">עכשיו</span> — לא מחר בבוקר</h2>
-    <p>כל שאלה שנשארת בלי מענה היא סל נטוש, ביקורת רעה, או לקוח שהלך למתחרה. ככה זה נראה היום ברוב החנויות:</p>
-  </div>
-  <div class="prob-grid">
-    <div class="prob">
-      <div class="emo">😴</div>
-      <h3>אף אחד לא זמין ב‑2 בלילה</h3>
-      <p>חצי מהפניות מגיעות אחרי שעות העבודה. בזמן שאתם ישנים, הלקוח מקבל שקט — ומזמין ממישהו אחר.</p>
-    </div>
-    <div class="prob">
-      <div class="emo">💸</div>
-      <h3>נציג שירות עולה הון</h3>
-      <p>משכורת, הכשרה, משמרות, תחלופה. וכל זה בשביל לענות שוב ושוב על אותן חמש שאלות.</p>
-    </div>
-    <div class="prob">
-      <div class="emo">🤖</div>
-      <h3>בוטים של כפתורים מעצבנים</h3>
-      <p>"הקש 1 למעקב הזמנה" זה לא שירות — זה מבוך. לקוחות שונאים את זה ונוטשים באמצע.</p>
     </div>
   </div>
 </section>
@@ -385,7 +351,7 @@
       <div>הקמה תוך ימים, לא חודשים</div>
       <div>ליווי ותמיכה שוטפת</div>
     </div>
-    <a class="btn btn-primary" href="#contact">קבלו הצעת מחיר בשיחה חינם</a>
+    <a class="btn btn-primary" id="pricingBookBtn" href="#demo">קבלו הצעת מחיר בשיחה חינם</a>
   </div>
 </section>
 
@@ -410,24 +376,11 @@
   <div class="final">
     <div>
       <h2>מוכנים לתת ללקוחות שלכם שירות שלא <span class="grad">מפספס אף פנייה?</span></h2>
-      <p>בואו נדבר 15 דקות. אראה לכם בדיוק איך בוט כזה יעבוד בחנות שלכם — בלי התחייבות, בלי לחץ.</p>
+      <p>בואו נדבר 15 דקות. אראה לכם בדיוק איך בוט כזה יעבוד בחנות שלכם — בלי התחייבות, בלי לחץ. פשוט שלחו הודעה והבוט יקבע לכם שיחה:</p>
       <div class="ctas">
-        <a class="btn btn-primary" id="calendlyBtn" href="#" target="_blank" rel="noopener">📅 קבעו שיחת ייעוץ חינם</a>
-        <a class="btn btn-wa" id="waFinal" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn-primary" id="bookBtn" href="#demo">📅 קבעו שיחת ייעוץ חינם</a>
+        <a class="btn btn-wa" id="waFinal" href="#" target="_blank" rel="noopener">שלחו הודעה ב‑WhatsApp</a>
       </div>
-    </div>
-
-    <div class="form-card">
-      <h3>או השאירו פרטים ונמשיך בוואטסאפ</h3>
-      <div class="fsub">ממלאים, לוחצים — וזה נפתח לכם ישר בוואטסאפ מולי</div>
-      <form id="leadForm">
-        <div class="field"><label for="lf-name">שם מלא</label><input id="lf-name" name="name" required placeholder="ישראל ישראלי"></div>
-        <div class="field"><label for="lf-phone">טלפון / WhatsApp</label><input id="lf-phone" name="phone" required placeholder="050-0000000"></div>
-        <div class="field"><label for="lf-biz">שם החנות / העסק</label><input id="lf-biz" name="business" placeholder="החנות שלי"></div>
-        <div class="field"><label for="lf-msg">במה נוכל לעזור? (לא חובה)</label><textarea id="lf-msg" name="message" placeholder="ספרו לי קצת על העסק…"></textarea></div>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">המשיכו בוואטסאפ ←</button>
-        <div class="form-note">מעדיפים לדבר ישר? <a href="#" id="waForm" style="color:var(--accent)">שלחו לי הודעה ב‑WhatsApp</a></div>
-      </form>
     </div>
   </div>
 </section>
@@ -454,26 +407,25 @@
 <script>
 /* ═══════════ CONFIG — edit these before going live ═══════════ */
 const CONFIG = {
-  // Bot API base (Railway). The demo widget POSTs to `${API_BASE}/api/chat`.
-  API_BASE: "https://web-production-e83e4.up.railway.app",
+  // Bot API base (Northflank). The demo widget POSTs to `${API_BASE}/api/chat`.
+  API_BASE: "https://site--chatbotdemo--w9bgl48jpc64.code.run",
   // WhatsApp number in international format, digits only (972 + number without leading 0)
   WHATSAPP: "972586421825",
-  WHATSAPP_MSG: "היי דוד, ראיתי את האתר ואשמח לשמוע עוד על בוט שירות הלקוחות",
-  // Calendly link — paste your real one here once created (e.g. https://calendly.com/davidmimun/15min)
-  CALENDLY: "https://calendly.com/davidmim0991/ai"  // book-call CTAs open this
+  WHATSAPP_MSG: "היי דוד, ראיתי את האתר ואשמח לשמוע עוד על בוט שירות הלקוחות"
 };
 
-/* ── wire up WhatsApp links (number comes from the backend / Railway OWNER_WHATSAPP) ── */
+/* ── wire up WhatsApp links (number comes from the backend / OWNER_WHATSAPP) ── */
 (function(){
   function wire(){
     const wa = `https://wa.me/${CONFIG.WHATSAPP}?text=${encodeURIComponent(CONFIG.WHATSAPP_MSG)}`;
-    ["waHero","waFinal","waForm","waFloat","waFooter"].forEach(id=>{
+    ["waHero","waFinal","waFloat","waFooter"].forEach(id=>{
       const el=document.getElementById(id); if(el) el.href=wa;
     });
-    const cal=document.getElementById("calendlyBtn");
-    if(cal){ cal.removeAttribute("target"); cal.href="#demo";
-      cal.onclick=e=>{e.preventDefault(); if(window.bookViaBot) window.bookViaBot(); else location.href=wa;};
-    }
+    // "book a call" buttons → scroll to demo widget + kick the bot into booking mode
+    ["bookBtn","heroBookBtn","pricingBookBtn"].forEach(id=>{
+      const b=document.getElementById(id);
+      if(b){ b.onclick=e=>{ e.preventDefault(); if(window.bookViaBot) window.bookViaBot(); }; }
+    });
   }
   // Pull the live WhatsApp number from the backend, then wire (fallback to config default).
   fetch(`${CONFIG.API_BASE}/api/config`).then(r=>r.json())
@@ -559,23 +511,6 @@ fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
     // Kick the bot straight into booking: it should greet + offer real slots + ask day/time.
     setTimeout(()=>send("אני רוצה לקבוע שיחת ייעוץ — מתי יש זמנים פנויים?"), 500);
   };
-})();
-
-/* ── lead form: opens WhatsApp with the details pre-filled (no backend) ── */
-(function(){
-  const form=document.getElementById("leadForm");
-  if(!form) return;
-  form.addEventListener("submit",e=>{
-    e.preventDefault();
-    const name=document.getElementById("lf-name").value.trim();
-    const phone=document.getElementById("lf-phone").value.trim();
-    const biz=document.getElementById("lf-biz").value.trim();
-    const msg=document.getElementById("lf-msg").value.trim();
-    let text=`היי דוד! הגעתי דרך האתר 🙂\nשם: ${name}\nטלפון: ${phone}`;
-    if(biz) text+=`\nעסק: ${biz}`;
-    if(msg) text+=`\nהודעה: ${msg}`;
-    window.open(`https://wa.me/${CONFIG.WHATSAPP}?text=${encodeURIComponent(text)}`,"_blank");
-  });
 })();
 </script>
 </body>
