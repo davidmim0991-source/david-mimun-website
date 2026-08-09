@@ -496,7 +496,11 @@ fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
     }
     sessionId=data.session_id||sessionId;
     t.remove();
-    add(data.response||"…","bot");
+    // Split on ||| to show as separate bubbles (like WhatsApp does)
+    const parts = (data.response||"…").split(/\s*\|\|\|\s*/);
+    parts.forEach((p,i)=>{
+      setTimeout(()=>add(p,"bot"), i*800);
+    });
     busy=false; input.focus();
   }
   form.addEventListener("submit",e=>{e.preventDefault();send(input.value);});
