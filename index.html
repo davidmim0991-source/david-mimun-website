@@ -14,7 +14,7 @@
 <meta property="og:locale" content="he_IL">
 <meta name="theme-color" content="#070a14">
 <!-- Favicon: inline SVG "D" monogram -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2300e5c0'/%3E%3Cstop offset='1' stop-color='%236b8cff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3Ctext x='50' y='72' font-family='Arial' font-size='64' font-weight='900' text-anchor='middle' fill='%2304121a'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -44,7 +44,7 @@
   header{position:sticky;top:0;z-index:40;backdrop-filter:blur(12px);background:rgba(7,10,20,.72);border-bottom:1px solid var(--line)}
   nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
   .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:17px}
-  .logo{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#04121a;font-weight:900;font-size:21px;flex-shrink:0}
+  .logo{width:40px;height:40px;flex-shrink:0}
   .navlinks{display:flex;gap:26px;color:var(--muted);font-weight:500;font-size:15px}
   .navlinks a:hover{color:var(--fg)}
   .nav-cta{background:linear-gradient(120deg,var(--accent),var(--accent2));color:#04121a;padding:10px 20px;border-radius:11px;font-weight:700;font-size:14px;transition:transform .15s}
@@ -234,7 +234,7 @@
 <header>
   <div class="wrap">
     <nav>
-      <a class="brand" href="#top"><span class="logo">M</span><span>Monaflows</span></a>
+      <a class="brand" href="#top"><img class="logo" src="logo.png" alt="Monaflows"></a>
       <div class="navlinks">
         <a href="#demo">הדגמה חיה</a>
         <a href="#how">איך זה עובד</a>
@@ -416,7 +416,7 @@
 <footer>
   <div class="wrap">
     <div class="foot">
-      <a class="brand" href="#top"><span class="logo">M</span><span>Monaflows</span></a>
+      <a class="brand" href="#top"><img class="logo" src="logo.png" alt="Monaflows"></a>
       <div class="contact">
         <a id="waFooter" href="#" target="_blank" rel="noopener">WhatsApp: 058-642-1825</a>
         <a href="mailto:david@monaflow.com">david@monaflow.com</a>
