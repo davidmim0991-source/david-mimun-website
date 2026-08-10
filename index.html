@@ -188,6 +188,8 @@
     .hero{grid-template-columns:1fr;gap:36px;padding-top:48px}
     .navlinks{display:none}
     .menu-btn{display:block}
+    .navlinks.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(7,10,20,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:20px 24px;gap:16px;z-index:50}
+    .navlinks.open a{font-size:17px;padding:8px 0}
     .prob-grid,.steps{grid-template-columns:1fr}
     .demo-wrap{grid-template-columns:1fr;padding:28px;gap:32px}
     .metrics{grid-template-columns:1fr 1fr}
@@ -210,8 +212,7 @@
         <a href="#pricing">מחירים</a>
         <a href="#faq">שאלות נפוצות</a>
       </div>
-      <a class="nav-cta" href="#demo">קבעו שיחה</a>
-      <button class="menu-btn" onclick="document.querySelector('.navlinks').style.display=document.querySelector('.navlinks').style.display==='flex'?'none':'flex'">☰</button>
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
     </nav>
   </div>
 </header>
@@ -404,6 +405,8 @@
 </a>
 
 <script>
+/* toggle mobile menu */
+function toggleMenu(){document.querySelector('.navlinks').classList.toggle('open')}
 /* ═══════════ CONFIG — edit these before going live ═══════════ */
 const CONFIG = {
   // Bot API base (Northflank). The demo widget POSTs to `${API_BASE}/api/chat`.
