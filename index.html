@@ -189,6 +189,7 @@
   .chat-overlay #demoBox{width:100%;max-width:500px;height:min(90vh,700px);border-radius:22px;box-shadow:0 40px 120px rgba(0,0,0,.7)}
   .chat-overlay .close-overlay{position:absolute;top:20px;left:20px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:24px;cursor:pointer;display:grid;place-items:center;transition:background .15s}
   .chat-overlay .close-overlay:hover{background:rgba(255,255,255,.2)}
+  @media(max-width:500px){.chat-overlay{padding:0;align-items:flex-end}.chat-overlay #demoBox{height:100%;max-height:100%;border-radius:0}}
   .wa-float{position:fixed;bottom:26px;left:26px;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 8px 30px rgba(37,211,102,.5);z-index:50;cursor:pointer;transition:transform .15s}
   .wa-float:hover{transform:scale(1.08)}
   .wa-float svg{width:32px;height:32px;fill:#fff}
@@ -458,6 +459,8 @@ function initOverlayChat(){
   }
   form.addEventListener('submit',function(e){e.preventDefault();send(inp.value)});
   if(quick)quick.addEventListener('click',function(e){var b=e.target.closest('button');if(b)send(b.dataset.q)});
+  // When the input gains focus (mobile keyboard opens), scroll messages into view
+  inp.addEventListener('focus',function(){setTimeout(function(){msgs.scrollTop=msgs.scrollHeight},400)});
   setTimeout(function(){inp.focus()},300);
 }
 /* ═══════════ CONFIG — edit these before going live ═══════════ */
@@ -563,6 +566,8 @@ fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
   if(quick) quick.addEventListener("click",e=>{
     const b=e.target.closest("button"); if(b) send(b.dataset.q);
   });
+  // Scroll messages into view when keyboard opens on mobile
+  input.addEventListener("focus",()=>setTimeout(()=>msgs.scrollTop=msgs.scrollHeight,400));
   // Expose so the "book a call" buttons can drive the demo bot into booking mode.
   window.bookViaBot=function(){
     const demo=document.getElementById("demo");
