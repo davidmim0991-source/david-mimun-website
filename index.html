@@ -134,7 +134,8 @@
   .try-hint b{color:var(--accent)}
 
   /* inline demo widget shell */
-  #demoBox{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45);display:flex;flex-direction:column;height:460px}
+  #demoBox{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45);display:flex;flex-direction:column;height:460px;cursor:pointer;transition:border-color .2s,transform .2s}
+  #demoBox:hover{border-color:rgba(0,229,192,.2);transform:translateY(-2px)}
   #demoBox .dh{background:linear-gradient(120deg,#141c2e,#0f1626);padding:15px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
   #demoBox .dh .cm-av{width:40px;height:40px;font-size:17px}
   #demoBox .dh .st{font-size:12px;color:var(--accent)}
@@ -321,22 +322,22 @@
       <p class="try-hint">💡 נסו לשאול: <b>"מה אתם מציעים?"</b> או <b>"כמה זה עולה?"</b></p>
     </div>
 
-    <div id="demoBox">
-      <div class="dh">
+    <div id="demoBox" onclick="openChatOverlay()">
+      <div class="dh" onclick="event.stopPropagation()">
         <div class="cm-av">P</div>
         <div><div style="font-weight:700">פרדוס · עוזר AI</div><div class="st">● מקוון · עונה מיד</div></div>
       </div>
-      <div id="demoMsgs">
+      <div id="demoMsgs" onclick="event.stopPropagation()">
         <div class="di">היי! 👋 אני פרדוס. אשמח לספר לך איך בוט AI יכול לעבוד בחנות שלך. מה תרצה לדעת?</div>
       </div>
-      <div class="dquick" id="dquick">
+      <div class="dquick" id="dquick" onclick="event.stopPropagation()">
         <button data-q="מה אתם מציעים?">מה אתם מציעים?</button>
         <button data-q="כמה זמן לוקח להקים בוט?">כמה זמן לוקח?</button>
         <button data-q="כמה זה עולה?">כמה זה עולה?</button>
       </div>
-      <form id="demoForm" autocomplete="off">
+      <form id="demoForm" autocomplete="off" onclick="event.stopPropagation()">
         <input id="demoInput" placeholder="כתבו הודעה…" aria-label="הודעה לבוט">
-        <button type="submit" aria-label="שליחה">↩</button>
+        <button type="submit" aria-label="שליחה">→</button>
       </form>
     </div>
   </div>
