@@ -72,7 +72,8 @@
   .trust b{color:var(--fg)}
 
   /* hero chat mock */
-  .chatmock{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .chatmock{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);cursor:pointer;transition:transform .2s,box-shadow .2s}
+  .chatmock:hover{transform:translateY(-3px);box-shadow:0 35px 90px rgba(0,0,0,.6)}
   .cm-head{background:linear-gradient(120deg,#141c2e,#0f1626);padding:15px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
   .cm-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-weight:900;color:#04121a}
   .cm-head .st{font-size:12px;color:var(--accent)}
@@ -423,9 +424,42 @@
 /* toggle mobile menu */
 function toggleMenu(){document.querySelector('.navlinks').classList.toggle('open')}
 /* toggle full-screen chat overlay */
-function openChatOverlay(){document.getElementById('chatOverlay').classList.add('open');document.getElementById('demoOverlayBox').innerHTML=document.getElementById('demoBox').outerHTML;initOverlayChat()}
+function openChatOverlay(){
+  document.getElementById('chatOverlay').classList.add('open');
+  document.getElementById('demoOverlayBox').innerHTML=document.getElementById('demoBox').outerHTML;
+  initOverlayChat();
+}
 function closeChatOverlay(){document.getElementById('chatOverlay').classList.remove('open')}
-function initOverlayChat(){var b=document.querySelector('#chatOverlay #demoBox');if(b&&!b.dataset.inited){b.dataset.inited='1';var inp=b.querySelector('#demoInput'),btn=b.querySelector('#demoForm button');if(inp)setTimeout(function(){inp.focus()},300)}}
+function initOverlayChat(){
+  var b=document.querySelector('#chatOverlay #demoBox');
+  if(!b||b.dataset.inited)return;
+  b.dataset.inited='1';
+  var msgs=b.querySelector('#demoMsgs'), form=b.querySelector('#demoForm'), inp=b.querySelector('#demoInput'), quick=b.querySelector('#dquick');
+  if(!form)return;
+  var sessionId=null, busy=false;
+  function add(text,who){var d=document.createElement('div');d.className=who==='me'?'do':'di';d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
+  function typing(){var t=document.createElement('div');t.className='dtyping';t.innerHTML='<span></span><span></span><span></span>';msgs.appendChild(t);msgs.scrollTop=msgs.scrollHeight;return t}
+  async function postChat(text,timeoutMs){
+    var ctrl=new AbortController(),to=setTimeout(function(){ctrl.abort()},timeoutMs);
+    try{var r=await fetch(CONFIG.API_BASE+'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,session_id:sessionId}),signal:ctrl.signal});if(!r.ok)throw new Error('http '+r.status);return await r.json()}finally{clearTimeout(to)}
+  }
+  async function send(text){
+    if(busy||!text.trim())return;
+    busy=true;inp.value='';
+    if(quick)quick.style.display='none';
+    add(text,'me');
+    var t=typing(),data=null;
+    for(var i=1;i<=5&&!data;i++){try{data=await postChat(text,60000);}catch(e){if(i===5){t.remove();add('אופס, יש רגע עומס 😅 נסו שוב, או שלחו לי הודעה ישירות בוואטסאפ.','bot');busy=false;return;}await new Promise(function(r){setTimeout(r,2000)})}}
+    sessionId=data.session_id||sessionId;
+    t.remove();
+    var parts=(data.response||'…').split(/\s*\|\|\|\s*/);
+    parts.forEach(function(p,i){setTimeout(function(){add(p,'bot')},i*800)});
+    busy=false;inp.focus();
+  }
+  form.addEventListener('submit',function(e){e.preventDefault();send(inp.value)});
+  if(quick)quick.addEventListener('click',function(e){var b=e.target.closest('button');if(b)send(b.dataset.q)});
+  setTimeout(function(){inp.focus()},300);
+}
 /* ═══════════ CONFIG — edit these before going live ═══════════ */
 const CONFIG = {
   // Bot API base (Northflank). The demo widget POSTs to `${API_BASE}/api/chat`.
