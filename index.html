@@ -108,10 +108,7 @@
   .steps::before{content:"";position:absolute;top:64px;left:calc(16.67% + 16px);right:calc(16.67% + 16px);height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:.3}
   .step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px 32px;text-align:center;transition:border-color .2s,transform .2s}
   .step:hover{border-color:rgba(0,229,192,.3);transform:translateY(-3px)}
-  .step .icon{width:56px;height:56px;border-radius:16px;margin:0 auto 16px;display:grid;place-items:center;font-size:24px;position:relative;z-index:2}
-  .step .icon-wrap{width:68px;height:68px;border-radius:18px;margin:0 auto 18px;display:grid;place-items:center;position:relative;z-index:2}
-  .step .icon-wrap::before{content:"";position:absolute;inset:0;border-radius:18px;padding:2px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
-  .step .icon-wrap .icon{width:100%;height:100%;border-radius:16px;background:linear-gradient(135deg,rgba(0,229,192,.12),rgba(107,140,255,.08))}
+  .step .icon{width:64px;height:64px;border-radius:16px;margin:0 auto 16px;display:grid;place-items:center;font-size:26px;position:relative;z-index:2;background:linear-gradient(135deg,rgba(0,229,192,.12),rgba(107,140,255,.08));border:1px solid rgba(0,229,192,.25)}
   .step .num{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:10px;text-transform:uppercase}
   .step h3{font-size:20px;font-weight:800;margin-bottom:10px}
   .step p{color:var(--muted);font-size:15px;line-height:1.65}
@@ -120,8 +117,7 @@
     .steps{grid-template-columns:1fr;gap:20px}
     .steps::before{display:none}
     .step{text-align:right;display:flex;gap:20px;align-items:flex-start;padding:24px}
-    .step .icon-wrap{width:52px;height:52px;border-radius:14px;margin:0 0 0 16px;flex-shrink:0}
-    .step .icon-wrap .icon{width:100%;height:100%;border-radius:12px}
+    .step .icon{width:52px;height:52px;border-radius:14px;margin:0 0 0 16px;flex-shrink:0;font-size:22px}
     .step .num{margin-bottom:4px}
     .step h3{font-size:18px;margin-bottom:6px}
     .step p{font-size:14px}
@@ -295,19 +291,19 @@
   </div>
   <div class="steps">
     <div class="step">
-      <div class="icon-wrap"><div class="icon">🔍</div></div>
+      <div class="icon">🔍</div>
       <div class="num">שלב 01</div>
       <h3>לומדים את העסק שלכם</h3>
       <p>שיחה קצרה, ואתם מעבירים לנו את המידע — מוצרים, מדיניות, שאלות נפוצות וטון הדיבור של המותג. אנחנו מלמדים את הבוט להכיר את החנות שלכם מבפנים.</p>
     </div>
     <div class="step">
-      <div class="icon-wrap"><div class="icon">⚙️</div></div>
+      <div class="icon">⚙️</div>
       <div class="num">שלב 02</div>
       <h3>בונים בוט מותאם אישית</h3>
       <p>מקימים לכם בוט AI שמדבר כמו אחד מהצוות שלכם — לא רובוט גנרי. הוא עונה על שאלות, עוקב אחרי הזמנות, מסביר מדיניות, ויודע מתי להעביר לבן אדם.</p>
     </div>
     <div class="step">
-      <div class="icon-wrap"><div class="icon">🚀</div></div>
+      <div class="icon">🚀</div>
       <div class="num">שלב 03</div>
       <h3>עולים לאוויר ומרוויחים זמן</h3>
       <p>הבוט מחובר ל‑WhatsApp שלכם ומתחיל לענות תוך שניות, 24/7. אתם מקבלים לקוחות מרוצים, חוסכים כסף, ומתפנים לעסוק בעסק.</p>
