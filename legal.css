@@ -1,0 +1,30 @@
+@font-face{
+  font-family:"Heebo";
+  src:url("fonts/heebo-vf.woff2") format("woff2");
+  font-weight:300 900;
+  font-style:normal;
+  font-display:swap;
+}
+:root{
+  --bg:#070a14; --card:#111827; --fg:#eef2ff; --muted:#93a0bd;
+  --accent:#00e5c0; --line:rgba(255,255,255,.08); --maxw:760px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:"Heebo",Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.7;padding-block:32px 64px}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.back{display:inline-block;margin-bottom:28px;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--fg)}
+h1{font-size:clamp(28px,4vw,40px);font-weight:900;line-height:1.2;margin-bottom:12px}
+h2{font-size:22px;margin:32px 0 12px}
+h3{font-size:18px;margin:24px 0 8px}
+p,li{color:var(--muted);margin-bottom:12px}
+ul,ol{padding-inline-start:22px;margin-bottom:16px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:28px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:18px 0}
+.placeholder{display:inline;border-bottom:1px dashed var(--accent);color:var(--fg)}
+.ltr{direction:ltr;unicode-bidi:isolate}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:14px}

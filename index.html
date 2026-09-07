@@ -4,32 +4,38 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Monaflows — בוט שירות לקוחות AI ל‑WhatsApp</title>
-<meta name="description" content="בונים לחנות האונליין שלך בוט AI לשירות לקוחות ב‑WhatsApp שמרגיש כמו בן אדם אמיתי. עונה תוך שניות, 24/7, חוסך אלפי שקלים בחודש. הדגמה חיה תוך 2 דקות.">
+<meta name="description" content="בונים לחנות האונליין שלך בוט AI לשירות לקוחות ב‑WhatsApp. הדגמה חיה, שיחת ייעוץ חינם, והצעת מחיר מותאמת לעסק.">
 <meta name="keywords" content="בוט AI, שירות לקוחות, WhatsApp, איקומרס, אוטומציה, צ'אטבוט, בוט וואטסאפ">
 <meta name="author" content="Monaflows">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Monaflows · בוט שירות לקוחות AI ל‑WhatsApp">
-<meta property="og:description" content="בוט AI שמרגיש כמו בן אדם אמיתי — עונה ללקוחות שלך תוך שניות, 24/7. הדגמה חיה תוך 2 דקות.">
+<meta property="og:description" content="בוט AI לשירות לקוחות ב‑WhatsApp לחנויות אונליין. הדגמה חיה ושיחת ייעוץ חינם.">
 <meta property="og:locale" content="he_IL">
 <meta name="theme-color" content="#070a14">
 <!-- Favicon: inline SVG "D" monogram -->
 <link rel="icon" href="logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+  @font-face{font-family:"Heebo";src:url("fonts/heebo-vf.woff2") format("woff2");font-weight:300 900;font-style:normal;font-display:swap}
   *{box-sizing:border-box;margin:0;padding:0}
   :root{
     --bg:#070a14; --bg2:#0b1020; --card:#111827; --card2:#0e1524;
-    --fg:#eef2ff; --muted:#93a0bd; --muted2:#6c7a99;
+    --fg:#eef2ff; --muted:#93a0bd; --muted2:#93a0bd;
     --accent:#00e5c0; --accent2:#6b8cff; --wa:#25d366;
     --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.12);
     --radius:18px; --maxw:1180px;
   }
   html{scroll-behavior:smooth}
-  body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+  body{font-family:'Heebo',Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  .skip-link{position:absolute;inset-inline-start:-999px;top:8px;background:var(--accent);color:#04121a;padding:8px 14px;border-radius:8px;z-index:200;font-weight:700}
+  .skip-link:focus{inset-inline-start:12px}
+  .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   h1,h2,h3{letter-spacing:-.5px}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   section{position:relative;z-index:1}
@@ -50,7 +56,7 @@
   .navlinks a:hover{color:var(--fg)}
   .nav-cta{background:linear-gradient(120deg,var(--accent),var(--accent2));color:#04121a;padding:10px 20px;border-radius:11px;font-weight:700;font-size:14px;transition:transform .15s}
   .nav-cta:hover{transform:translateY(-1px)}
-  .menu-btn{display:none;background:none;border:none;color:var(--fg);font-size:26px;cursor:pointer}
+  .menu-btn{display:none;background:none;border:none;color:var(--fg);font-size:26px;cursor:pointer;min-width:44px;min-height:44px}
 
   /* buttons */
   .btn{padding:15px 28px;border-radius:14px;font-weight:700;font-size:16px;cursor:pointer;border:none;transition:transform .15s,box-shadow .15s;display:inline-flex;align-items:center;gap:10px;font-family:inherit}
@@ -73,7 +79,7 @@
   .trust b{color:var(--fg)}
 
   /* hero chat mock */
-  .chatmock{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);cursor:pointer;transition:transform .2s,box-shadow .2s}
+  .chatmock{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);cursor:pointer;transition:transform .2s,box-shadow .2s;padding:0;font:inherit;color:inherit;text-align:inherit;width:100%}
   .chatmock:hover{transform:translateY(-3px);box-shadow:0 35px 90px rgba(0,0,0,.6)}
   .cm-head{background:linear-gradient(120deg,#141c2e,#0f1626);padding:15px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
   .cm-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-weight:900;color:#04121a}
@@ -135,8 +141,8 @@
   .try-hint b{color:var(--accent)}
 
   /* inline demo widget shell */
-  #demoBox{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45);display:flex;flex-direction:column;height:460px;cursor:pointer;transition:border-color .2s,transform .2s}
-  #demoBox:hover{border-color:rgba(0,229,192,.2);transform:translateY(-2px)}
+  #demoHost{min-height:460px}
+  #demoBox{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45);display:flex;flex-direction:column;height:460px}
   #demoBox .dh{background:linear-gradient(120deg,#141c2e,#0f1626);padding:15px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
   #demoBox .dh .cm-av{width:40px;height:40px;font-size:17px}
   #demoBox .dh .st{font-size:12px;color:var(--accent)}
@@ -148,12 +154,14 @@
   .dtyping span{width:6px;height:6px;background:var(--muted);border-radius:50%;animation:b 1.2s infinite}
   .dtyping span:nth-child(2){animation-delay:.2s}.dtyping span:nth-child(3){animation-delay:.4s}
   .dquick{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 8px}
-  .dquick button{background:rgba(255,255,255,.05);border:1px solid var(--line2);color:var(--fg);font-family:inherit;font-size:13px;padding:7px 13px;border-radius:100px;cursor:pointer;transition:background .15s}
+  .dquick button{background:rgba(255,255,255,.05);border:1px solid var(--line2);color:var(--fg);font-family:inherit;font-size:13px;padding:8px 13px;border-radius:100px;cursor:pointer;min-height:44px}
   .dquick button:hover{background:rgba(0,229,192,.12);border-color:rgba(0,229,192,.3)}
   #demoForm{border-top:1px solid var(--line);padding:12px 14px;display:flex;gap:10px;align-items:center}
-  #demoInput{flex:1;background:#0c1320;border:1px solid var(--line);border-radius:100px;padding:11px 16px;color:var(--fg);font-size:16px;font-family:inherit;outline:none}
-  #demoInput:focus{border-color:rgba(0,229,192,.4)}
-  #demoForm button{width:40px;height:40px;border-radius:50%;background:linear-gradient(120deg,var(--accent),var(--accent2));border:none;color:#04121a;font-weight:900;cursor:pointer;flex-shrink:0;font-size:16px}
+  #demoInput{flex:1;background:#0c1320;border:1px solid var(--line);border-radius:100px;padding:11px 16px;color:var(--fg);font-size:16px;font-family:inherit;min-height:44px}
+  #demoInput:focus-visible{border-color:rgba(0,229,192,.7)}
+  #demoForm button{width:44px;height:44px;border-radius:50%;background:linear-gradient(120deg,var(--accent),var(--accent2));border:none;color:#04121a;font-weight:900;cursor:pointer;flex-shrink:0;font-size:16px}
+  .chat-notice{margin-top:14px;color:var(--muted);font-size:13px;line-height:1.6}
+  .chat-notice a{color:var(--accent);text-decoration:underline}
 
   /* benefits/metrics */
   .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
@@ -192,28 +200,26 @@
   .foot .brand{font-size:16px}
   .foot .contact{display:flex;gap:22px;color:var(--muted);font-size:14px;flex-wrap:wrap}
   .foot .contact a:hover{color:var(--fg)}
+  .foot .legal{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+  .foot .legal a:hover{color:var(--fg)}
   .copyright{text-align:center;color:var(--muted2);font-size:13px;margin-top:28px}
 
-  /* chat mock clickable */
-  .chatmock{cursor:pointer;transition:transform .2s,box-shadow .2s}
-  .chatmock:hover{transform:translateY(-3px);box-shadow:0 40px 100px rgba(0,0,0,.6)}
-  
-  /* full-screen overlay */
-  .chat-overlay{position:fixed;inset:0;z-index:100;background:rgba(7,10,14,.92);backdrop-filter:blur(8px);display:none;justify-content:center;align-items:center;padding:20px}
-  .chat-overlay.open{display:flex}
-  .chat-overlay #demoBox{width:100%;max-width:500px;height:min(90vh,700px);border-radius:22px;box-shadow:0 40px 120px rgba(0,0,0,.7)}
-  .chat-overlay .close-overlay{position:absolute;top:20px;left:20px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:24px;cursor:pointer;display:grid;place-items:center;transition:background .15s}
-  .chat-overlay .close-overlay:hover{background:rgba(255,255,255,.2)}
+  #chatDialog{border:0;padding:0;background:transparent;max-width:100%;width:min(500px,100%);height:min(90vh,700px);position:relative}
+  #chatDialog::backdrop{background:rgba(7,10,14,.92);backdrop-filter:blur(8px)}
+  #chatDialog[open]{display:flex;flex-direction:column;align-items:stretch}
+  #chatDialog #demoBox{width:100%;height:100%;max-height:min(90vh,700px);border-radius:22px}
+  .close-overlay{position:absolute;top:12px;inset-inline-start:12px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:22px;cursor:pointer;z-index:2}
   @media(max-width:500px){
-    .chat-overlay{padding:0}
-    .chat-overlay #demoBox{width:100%;max-width:100%;height:100%;max-height:100%;border-radius:0}
-    .chat-overlay .close-overlay{top:8px;left:8px;width:36px;height:36px;font-size:18px;z-index:10}
+    #chatDialog{width:100%;height:100%;max-width:100%}
+    #chatDialog #demoBox{border-radius:0;max-height:100%}
+    .close-overlay{top:8px;inset-inline-start:8px}
     .foot{flex-direction:column;justify-content:center;text-align:center;gap:12px}
-    .foot .contact{justify-content:center}
+    .foot .contact,.foot .legal{justify-content:center}
   }
   .wa-float{position:fixed;bottom:26px;left:26px;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 8px 30px rgba(37,211,102,.5);z-index:50;cursor:pointer;transition:transform .15s}
   .wa-float:hover{transform:scale(1.08)}
   .wa-float svg{width:32px;height:32px;fill:#fff}
+  .ltr{direction:ltr;unicode-bidi:isolate}
 
   /* responsive */
   @media(max-width:900px){
@@ -231,58 +237,61 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">דילוג לתוכן</a>
 <div class="glow"></div>
 
 <!-- ══ NAV ══ -->
 <header>
   <div class="wrap">
-    <nav>
-      <a class="brand" href="#top"><img class="logo" src="logo.png" alt="Monaflows"></a>
-      <div class="navlinks">
+    <nav aria-label="ראשי">
+      <a class="brand" href="#top"><img class="logo" src="logo.png" alt="Monaflows — עמוד הבית" width="48" height="48"></a>
+      <div class="navlinks" id="navlinks">
         <a href="#demo">הדגמה חיה</a>
         <a href="#how">איך זה עובד</a>
         <a href="#pricing">מחירים</a>
         <a href="#faq">שאלות נפוצות</a>
       </div>
-      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+      <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks" aria-label="פתיחת תפריט">☰</button>
     </nav>
   </div>
 </header>
+
+<main id="main">
 
 <!-- ══ HERO ══ -->
 <section id="top" class="wrap">
   <div class="hero">
     <div>
-      <div class="badge"><span class="dot"></span> בוט שאי אפשר להבחין שהוא AI</div>
+      <div class="badge"><span class="dot" aria-hidden="true"></span> בוט שירות לקוחות מבוסס AI ל‑WhatsApp</div>
       <h1>שירות לקוחות ב‑WhatsApp<br>שמרגיש כמו <span class="grad">בן אדם אמיתי</span></h1>
-      <p class="sub">אנחנו בונים לחנות שלך בוט AI שעונה ללקוחות תוך שניות, מסביב לשעון — בשפה טבעית וזורמת, בלי תפריטי כפתורים מעצבנים. חוסך לך אלפי שקלים בחודש על נציגי שירות, ולא מפספס אף לקוח.</p>
+      <p class="sub">אנחנו בונים לחנות שלך בוט AI שעונה ללקוחות בשפה טבעית, בלי תפריטי כפתורים מעצבנים — ומפנה את הצוות שלך לפניות שדורשות אדם. השיחה הראשונה חינם, בלי התחייבות.</p>
       <div class="ctas">
-        <a class="btn btn-primary" id="heroBookBtn" href="#demo">📅 קבעו שיחת ייעוץ חינם</a>
-        <a class="btn btn-wa" id="waHero" href="#" target="_blank" rel="noopener">שלחו הודעה ב‑WhatsApp</a>
+        <a class="btn btn-primary" id="heroBookBtn" href="#demo">קבעו שיחת ייעוץ חינם</a>
+        <a class="btn btn-wa" id="waHero" href="https://wa.me/972586421825" target="_blank" rel="noopener">שלחו הודעה ב‑WhatsApp</a>
       </div>
       <div class="trust">
-        <span>✓ <b>הדגמה חיה</b></span>
+        <span>✓ <b>הדגמה חיה</b> עם בוט AI</span>
         <span>✓ עברית ואנגלית</span>
-        <span>✓ עולה לאוויר תוך <b>2-3 שבועות</b></span>
+        <span>✓ הקמה טיפוסית תוך <b>2–3 שבועות</b> לאחר קבלת החומרים</span>
       </div>
     </div>
 
-    <div class="chatmock" onclick="openChatOverlay()">
+    <button type="button" class="chatmock" id="heroChatMock" aria-haspopup="dialog" aria-controls="chatDialog">
       <div class="cm-head">
-        <div class="cm-av">P</div>
-        <div><div style="font-weight:700">פרדוס · העוזר של Monaflows</div><div class="st">● מקוון עכשיו</div></div>
+        <div class="cm-av" aria-hidden="true">P</div>
+        <div><div style="font-weight:700">פרדוס · העוזר של Monaflows</div><div class="st">בוט AI · הדגמה</div></div>
       </div>
       <div class="cm-body">
-        <div class="msg in">היי 👋 אני פרדוס, אני יכול להסביר לך בדיוק איך בוט כזה יעבוד בחנות שלך</div>
+        <div class="msg in">היי, אני פרדוס — בוט AI. אפשר להסביר איך בוט כזה יעבוד בחנות שלך</div>
         <div class="msg out">כמה זמן לוקח להקים?</div>
         <div class="msg in">תלוי בכמות המידע, אבל רוב הלקוחות שלנו עולים לאוויר תוך מספר שבועות</div>
-        <div class="typing"><span></span><span></span><span></span></div>
+        <div class="typing" aria-hidden="true"><span></span><span></span><span></span></div>
       </div>
       <div class="cm-input">
-        <div class="f">לחצו להתחיל →</div>
-        <div class="cm-send">→</div>
+        <div class="f">לחצו לפתיחת ההדגמה</div>
+        <div class="cm-send" aria-hidden="true">→</div>
       </div>
-    </div>
+    </button>
   </div>
 </section>
 
@@ -304,13 +313,13 @@
       <div class="icon">⚙️</div>
       <div class="num">שלב 02</div>
       <h3>בונים בוט מותאם אישית</h3>
-      <p>מקימים לכם בוט AI שמדבר כמו אחד מהצוות שלכם — לא רובוט גנרי. הוא עונה על שאלות, עוקב אחרי הזמנות, מסביר מדיניות, ויודע מתי להעביר לבן אדם.</p>
+      <p>מקימים לכם בוט AI שמדבר כמו אחד מהצוות שלכם — לא רובוט גנרי. הוא עונה על שאלות, מסביר מדיניות, ויודע מתי לבקש העברה לבן אדם — אם היכולת הזו הוגדרה בפרויקט.</p>
     </div>
     <div class="step">
       <div class="icon">🚀</div>
       <div class="num">שלב 03</div>
       <h3>עולים לאוויר ומרוויחים זמן</h3>
-      <p>הבוט מחובר לא רק ל‑WhatsApp אלא לכל מערכות העסק — מערכת הזמנות, ניהול מלאי, יומן תורים ועוד. הוא עוקב אחרי הזמנות, קובע תורים, ועונה ללקוחות תוך שניות, 24/7. אתם מקבלים לקוחות מרוצים, חוסכים כסף, ומתפנים לעסוק בעסק.</p>
+      <p>אפשר לחבר את הבוט ל‑WhatsApp ולמערכות שהוסכמו באפיון (למשל הזמנות או יומן). ההדגמה באתר הזה אינה מחוברת לחנות חיה. זמינות 24/7 תלויה בהגדרת הפרויקט ובזמינות התשתית.</p>
     </div>
   </div>
 </section>
@@ -321,27 +330,33 @@
     <div class="demo-copy">
       <div class="kicker">אל תאמינו לי — נסו לבד</div>
       <h2>דברו עם הבוט <span class="grad">עכשיו</span></h2>
-      <p>זה אותו בוט שנבנה לחנות שלך. שאלו אותו כל דבר בעברית — הוא יענה לכם כמו בן אדם, בזמן אמת.</p>
-      <p class="try-hint">💡 נסו לשאול: <b>"מה אתם מציעים?"</b> או <b>"כמה זה עולה?"</b></p>
+      <p>זה בוט AI בשם פרדוס, לא אדם. שאלו בעברית על השירות. אם תבקשו לקבוע שיחה ייאסף מידע ליצירת קשר לפי <a href="privacy.html">מדיניות הפרטיות</a>.</p>
+      <p class="try-hint">נסו לשאול: <b>"מה אתם מציעים?"</b> או <b>"כמה זה עולה?"</b></p>
     </div>
 
-    <div id="demoBox" onclick="openChatOverlay()">
-      <div class="dh" onclick="event.stopPropagation()">
-        <div class="cm-av">P</div>
-        <div><div style="font-weight:700">פרדוס · עוזר AI</div><div class="st">● מקוון · עונה מיד</div></div>
+    <div>
+    <div id="demoHost">
+    <div id="demoBox">
+      <div class="dh">
+        <div class="cm-av" aria-hidden="true">P</div>
+        <div><div style="font-weight:700">פרדוס · עוזר AI</div><div class="st">בוט אוטומטי · לא אדם</div></div>
       </div>
-      <div id="demoMsgs" onclick="event.stopPropagation()">
-        <div class="di">היי! 👋 אני פרדוס. אשמח לספר לך איך בוט AI יכול לעבוד בחנות שלך. מה תרצה לדעת?</div>
+      <div id="demoMsgs" role="log" aria-live="polite" aria-relevant="additions">
+        <div class="di">היי, אני פרדוס — בוט AI. אשמח לספר איך בוט יכול לעבוד בחנות שלך. מה תרצה לדעת?</div>
       </div>
-      <div class="dquick" id="dquick" onclick="event.stopPropagation()">
-        <button data-q="מה אתם מציעים?">מה אתם מציעים?</button>
-        <button data-q="כמה זמן לוקח להקים בוט?">כמה זמן לוקח?</button>
-        <button data-q="כמה זה עולה?">כמה זה עולה?</button>
+      <div class="dquick" id="dquick">
+        <button type="button" data-q="מה אתם מציעים?">מה אתם מציעים?</button>
+        <button type="button" data-q="כמה זמן לוקח להקים בוט?">כמה זמן לוקח?</button>
+        <button type="button" data-q="כמה זה עולה?">כמה זה עולה?</button>
       </div>
-      <form id="demoForm" autocomplete="off" onclick="event.stopPropagation()">
-        <input id="demoInput" placeholder="כתבו הודעה…" aria-label="הודעה לבוט">
-        <button type="submit" aria-label="שליחה">→</button>
+      <form id="demoForm" autocomplete="off">
+        <label class="visually-hidden" for="demoInput">הודעה לבוט ההדגמה</label>
+        <input id="demoInput" name="message" type="text" maxlength="4000" placeholder="כתבו הודעה…" autocomplete="off">
+        <button type="submit" aria-label="שליחת ההודעה">→</button>
       </form>
+    </div>
+    </div>
+    <p class="chat-notice">מסירת מידע בצ׳אט היא רשות. בלי הודעה לא נוכל להשיב או לקבוע שיחה. בעל השליטה: דוד מימון אוטומציות. המידע משמש למענה ולתיאום ייעוץ, נשמר אצלנו, ומועבר לספקי תשתית ובינה מלאכותית מחוץ לישראל — וליומן Google ולוואטסאפ אם נקבעה שיחה. יש זכות עיון ותיקון. פירוט ב<a href="privacy.html">מדיניות הפרטיות</a>.</p>
     </div>
   </div>
 </section>
@@ -350,13 +365,14 @@
 <section class="sec wrap">
   <div class="sec-head">
     <div class="kicker">המספרים מדברים</div>
-    <h2>למה עסקים עוברים <span class="grad">לנציג שירות AI</span></h2>
+    <h2>למה עסקים בוחנים <span class="grad">נציג שירות AI</span></h2>
+    <p>המספרים שלהלן הם המחשה כללית של פוטנציאל המוצר, לא מדד מאומת של לקוחות Monaflows.</p>
   </div>
   <div class="metrics">
-    <div class="metric"><b>80%</b><span>מהפניות נפתרות אוטומטית, בלי בן אדם</span></div>
-    <div class="metric"><b>24/7</b><span>זמינות מלאה — גם בלילה, גם בשבת</span></div>
-    <div class="metric"><b>‏3-9 שנ׳</b><span>זמן תגובה ממוצע, במקום שעות</span></div>
-    <div class="metric"><b>65-73%</b><span>חיסכון בעלות אנושי</span></div>
+    <div class="metric"><b>24/7</b><span>אפשרות לזמינות רציפה בפרויקט מוגדר — כפוף לתשתית</span></div>
+    <div class="metric"><b>שניות</b><span>יעד תגובה מהיר במקום המתנה ארוכה לנציג</span></div>
+    <div class="metric"><b>פחות עומס</b><span>הבוט מטפל בשאלות חוזרות; אדם נשאר למקרים מורכבים</span></div>
+    <div class="metric"><b>חיסכון</b><span>פוטנציאל להפחתת עלות נציגים — תלוי בהיקף הפניות</span></div>
   </div>
 </section>
 
@@ -373,12 +389,12 @@
     <div class="incl">
       <div>בוט AI מותאם אישית לחנות</div>
       <div>אימון על המוצרים והמדיניות שלך</div>
-      <div>חיבור מלא ל‑WhatsApp</div>
-      <div>חיבור מלא למערכות העסק</div>
+      <div>חיבור ל‑WhatsApp</div>
+      <div>חיבור למערכות שהוסכמו באפיון</div>
       <div>עברית ואנגלית</div>
-      <div>התנהגות אנושית, לא רובוטית</div>
-      <div>העברה חכמה לנציג בעת הצורך</div>
-      <div>הקמה תוך ימים, לא חודשים</div>
+      <div>סגנון שיחה טבעי</div>
+      <div>אפשרות להעברה לנציג, אם הוגדרה</div>
+      <div>לוח זמנים טיפוסי: שבועות, לא חודשים</div>
       <div>ליווי ותמיכה שוטפת</div>
     </div>
     <a class="btn btn-primary" id="pricingBookBtn" href="#demo">קבלו הצעת מחיר בשיחה חינם</a>
@@ -392,12 +408,12 @@
     <h2>כל מה ש<span class="grad">חשוב לדעת</span></h2>
   </div>
   <div class="faq">
-    <details class="qa"><summary>האם הלקוחות ידעו שזה בוט?</summary><div class="a">הבוט מדבר בצורה טבעית לגמרי — עם טון אנושי, זמני תגובה ריאליים וסגנון שמתאים למותג שלך. הוא לא ישקר אם ישאלו אותו ישירות, אבל ברוב המקרים הלקוחות פשוט מקבלים שירות מהיר ומצוין בלי לחשוב על זה פעמיים.</div></details>
+    <details class="qa"><summary>האם הלקוחות ידעו שזה בוט?</summary><div class="a">הבוט מדבר בסגנון טבעי, אבל בהדגמה באתר הזה הוא מוצג במפורש כבוט AI. בפרויקט לחנות שלכם נגדיר יחד איך להציג את הבוט ללקוחות, בהתאם לדין ולשקיפות הנדרשת. הוא לא אמור להציג את עצמו כאדם אם נשאל ישירות.</div></details>
     <details class="qa"><summary>כמה זמן לוקח להקים?</summary><div class="a">תלוי בכמות המידע והמורכבות, אבל רוב הלקוחות שלנו עולים לאוויר תוך מספר שבועות. ברגע שאנחנו מקבלים את המידע על החנות — מוצרים, מדיניות ושאלות נפוצות — העבודה מתקדמת מהר.</div></details>
     <details class="qa"><summary>אני לא טכנולוגי — זה מסובך לי?</summary><div class="a">בכלל לא. אתם לא צריכים לגעת בשום קוד או הגדרה. אנחנו בונים, מחברים ומתחזקים הכול. כל מה שאתם עושים זה להעביר לנו מידע על העסק — ולקבל בוט שעובד.</div></details>
     <details class="qa"><summary>הבוט מדבר עברית טוב?</summary><div class="a">מצוין. הבוט נבנה במיוחד לעברית טבעית וזורמת — כולל ניסוח נכון, טון מותאם, ושפה שמרגישה כמו שיחה עם בן אדם. הוא גם תומך באנגלית ועובר בין השפות באופן חלק.</div></details>
-    <details class="qa"><summary>מה קורה עם שאלות שהבוט לא יודע לענות?</summary><div class="a">הבוט יודע לזהות מתי שאלה חורגת מהיכולת שלו — למשל תלונה מורכבת או בעיית תשלום — ומעביר את השיחה לבן אדם באופן חלק, בלי שהלקוח נשאר תקוע.</div></details>
-    <details class="qa"><summary>זה מתחבר לחנות שלי (Shopify / WooCommerce)?</summary><div class="a">כן. אפשר לחבר את הבוט לחנות כדי שיביא סטטוס הזמנות, מידע על מוצרים ומלאי בזמן אמת. נדבר על זה בשיחה ונתאים את החיבור לפי הפלטפורמה שלך.</div></details>
+    <details class="qa"><summary>מה קורה עם שאלות שהבוט לא יודע לענות?</summary><div class="a">אפשר להגדיר בפרויקט זיהוי של שאלות חורגות והעברה לנציג. בהדגמה שבאתר אין העברה חיה לנציג אנושי.</div></details>
+    <details class="qa"><summary>זה מתחבר לחנות שלי (Shopify / WooCommerce)?</summary><div class="a">חיבור לחנות או ל־CRM אפשרי כחלק מפרויקט מותאם אחרי אפיון. הוא אינו פעיל בהדגמה הזו ואינו כלול אוטומטית בכל חבילה.</div></details>
   </div>
 </section>
 
@@ -405,24 +421,31 @@
 <section id="contact" class="sec wrap">
   <div class="final">
     <div>
-      <h2>מוכנים לתת ללקוחות שלכם שירות שלא <span class="grad">מפספס אף פנייה?</span></h2>
-      <p>בואו נדבר 15 דקות. אראה לכם בדיוק איך בוט כזה יעבוד בחנות שלכם — בלי התחייבות, בלי לחץ. פשוט שלחו הודעה והבוט יקבע לכם שיחה:</p>
+      <h2>מוכנים לבדוק אם בוט כזה מתאים לחנות שלכם?</h2>
+      <p>אפשר לתאם שיחת היכרות קצרה בלי התחייבות. שלחו הודעה בוואטסאפ או פתחו את צ׳אט ההדגמה — זה בוט AI, והמידע שנמסר מטופל לפי מדיניות הפרטיות.</p>
       <div class="ctas">
-        <a class="btn btn-primary" id="bookBtn" href="#demo">📅 קבעו שיחת ייעוץ חינם</a>
-        <a class="btn btn-wa" id="waFinal" href="#" target="_blank" rel="noopener">שלחו הודעה ב‑WhatsApp</a>
+        <a class="btn btn-primary" id="bookBtn" href="#demo">קבעו שיחת ייעוץ חינם</a>
+        <a class="btn btn-wa" id="waFinal" href="https://wa.me/972586421825" target="_blank" rel="noopener">שלחו הודעה ב‑WhatsApp</a>
       </div>
     </div>
   </div>
 </section>
 
+</main>
+
 <!-- ══ FOOTER ══ -->
 <footer>
   <div class="wrap">
     <div class="foot">
-      <a class="brand" href="#top"><img class="logo" src="logo.png" alt="Monaflows"></a>
+      <a class="brand" href="#top"><img class="logo" src="logo.png" alt="Monaflows — עמוד הבית" width="48" height="48"></a>
       <div class="contact">
-        <a id="waFooter" href="#" target="_blank" rel="noopener">WhatsApp: 058-642-1825</a>
-        <a href="mailto:david@monaflow.com">david@monaflow.com</a>
+        <a id="waFooter" href="https://wa.me/972586421825" target="_blank" rel="noopener">WhatsApp: <span class="ltr" dir="ltr">058-642-1825</span></a>
+        <a href="mailto:davidmim0991@gmail.com">davidmim0991@gmail.com</a>
+      </div>
+      <div class="legal">
+        <a href="privacy.html">פרטיות</a>
+        <a href="terms.html">תנאי שימוש</a>
+        <a href="accessibility.html">נגישות</a>
       </div>
     </div>
     <div class="copyright">© 2026 Monaflows · דוד מימון אוטומציות · כל הזכויות שמורות</div>
@@ -430,91 +453,86 @@
 </footer>
 
 <!-- floating WhatsApp -->
-<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" title="שלחו הודעה ב‑WhatsApp" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.6.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.7 4.3 3.8 1.6.7 2.2.7 3 .6.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 00-8.6 15l-1.3 4.7 4.9-1.3A10 10 0 1012 2z"/></svg>
+<a class="wa-float" id="waFloat" href="https://wa.me/972586421825" target="_blank" rel="noopener" aria-label="שליחת הודעה ב‑WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.6.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.7 4.3 3.8 1.6.7 2.2.7 3 .6.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 00-8.6 15l-1.3 4.7 4.9-1.3A10 10 0 1012 2z"/></svg>
 </a>
 
-<!-- full-screen chat overlay -->
-<div class="chat-overlay" id="chatOverlay" onclick="if(event.target===this)closeChatOverlay()">
-  <button class="close-overlay" onclick="closeChatOverlay()">✕</button>
-  <div id="demoOverlayBox"></div>
-</div>
+<dialog id="chatDialog" closedby="any" aria-labelledby="chatDialogTitle">
+  <form method="dialog">
+    <button type="submit" class="close-overlay" id="closeChatBtn" aria-label="סגירת הצ׳אט">✕</button>
+  </form>
+  <h2 id="chatDialogTitle" class="visually-hidden">צ׳אט הדגמה עם בוט AI</h2>
+</dialog>
 
 <script>
-/* toggle mobile menu */
-function toggleMenu(){document.querySelector('.navlinks').classList.toggle('open')}
-/* toggle full-screen chat overlay */
-function openChatOverlay(){
-  document.getElementById('chatOverlay').classList.add('open');
-  document.getElementById('demoOverlayBox').innerHTML=document.getElementById('demoBox').outerHTML;
-  initOverlayChat();
-}
-function closeChatOverlay(){document.getElementById('chatOverlay').classList.remove('open')}
-function initOverlayChat(){
-  var b=document.querySelector('#chatOverlay #demoBox');
-  if(!b||b.dataset.inited)return;
-  b.dataset.inited='1';
-  var msgs=b.querySelector('#demoMsgs'), form=b.querySelector('#demoForm'), inp=b.querySelector('#demoInput'), quick=b.querySelector('#dquick');
-  if(!form)return;
-  var sessionId=null, busy=false;
-  function add(text,who){var d=document.createElement('div');d.className=who==='me'?'do':'di';d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
-  function typing(){var t=document.createElement('div');t.className='dtyping';t.innerHTML='<span></span><span></span><span></span>';msgs.appendChild(t);msgs.scrollTop=msgs.scrollHeight;return t}
-  async function postChat(text,timeoutMs){
-    var ctrl=new AbortController(),to=setTimeout(function(){ctrl.abort()},timeoutMs);
-    try{var r=await fetch(CONFIG.API_BASE+'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,session_id:sessionId}),signal:ctrl.signal});if(!r.ok)throw new Error('http '+r.status);return await r.json()}finally{clearTimeout(to)}
-  }
-  async function send(text){
-    if(busy||!text.trim())return;
-    busy=true;inp.value='';
-    if(quick)quick.style.display='none';
-    add(text,'me');
-    var t=typing(),data=null;
-    for(var i=1;i<=5&&!data;i++){try{data=await postChat(text,60000);}catch(e){if(i===5){t.remove();add('אופס, יש רגע עומס 😅 נסו שוב, או שלחו לי הודעה ישירות בוואטסאפ.','bot');busy=false;return;}await new Promise(function(r){setTimeout(r,2000)})}}
-    sessionId=data.session_id||sessionId;
-    t.remove();
-    var parts=(data.response||'…').split(/\s*\|\|\|\s*/);
-    parts.forEach(function(p,i){setTimeout(function(){add(p,'bot')},i*800)});
-    busy=false;inp.focus();
-  }
-  form.addEventListener('submit',function(e){e.preventDefault();send(inp.value)});
-  if(quick)quick.addEventListener('click',function(e){var b=e.target.closest('button');if(b)send(b.dataset.q)});
-  // When the input gains focus (mobile keyboard opens), scroll messages into view
-  inp.addEventListener('focus',function(){setTimeout(function(){msgs.scrollTop=msgs.scrollHeight},400)});
-  setTimeout(function(){inp.focus()},300);
-}
-/* ═══════════ CONFIG — edit these before going live ═══════════ */
 const CONFIG = {
-  // Bot API base (Northflank). The demo widget POSTs to `${API_BASE}/api/chat`.
   API_BASE: "https://site--chatbotdemo--w9bgl48jpc64.code.run",
-  // WhatsApp number in international format, digits only (972 + number without leading 0)
   WHATSAPP: "972586421825",
   WHATSAPP_MSG: "היי דוד, ראיתי את האתר ואשמח לשמוע עוד על בוט שירות הלקוחות"
 };
 
-/* ── wire up WhatsApp links (number comes from the backend / OWNER_WHATSAPP) ── */
+(function(){
+  const nav = document.getElementById("navlinks");
+  const menuBtn = document.getElementById("menuBtn");
+  function setMenu(open){
+    nav.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    menuBtn.setAttribute("aria-label", open ? "סגירת תפריט" : "פתיחת תפריט");
+  }
+  menuBtn.addEventListener("click", ()=>setMenu(!nav.classList.contains("open")));
+  nav.querySelectorAll("a").forEach(a=>a.addEventListener("click", ()=>setMenu(false)));
+  document.addEventListener("keydown", e=>{
+    if(e.key==="Escape" && nav.classList.contains("open")) setMenu(false);
+  });
+})();
+
+(function(){
+  const dialog = document.getElementById("chatDialog");
+  const host = document.getElementById("demoHost");
+  const box = document.getElementById("demoBox");
+  const mock = document.getElementById("heroChatMock");
+  function openChat(){
+    dialog.appendChild(box);
+    if(typeof dialog.showModal === "function") dialog.showModal();
+    else dialog.setAttribute("open","");
+    document.getElementById("demoInput").focus();
+  }
+  function closeChat(){
+    if(dialog.open) dialog.close();
+  }
+  dialog.addEventListener("close", ()=>{ if(box.parentNode!==host) host.appendChild(box); });
+  mock.addEventListener("click", openChat);
+  if (!("closedBy" in HTMLDialogElement.prototype)) {
+    dialog.addEventListener("click", (event) => {
+      if (event.target !== dialog) return;
+      const rect = dialog.getBoundingClientRect();
+      const inside =
+        rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX && event.clientX <= rect.left + rect.width;
+      if (!inside) closeChat();
+    });
+  }
+})();
+
 (function(){
   function wire(){
     const wa = `https://wa.me/${CONFIG.WHATSAPP}?text=${encodeURIComponent(CONFIG.WHATSAPP_MSG)}`;
     ["waHero","waFinal","waFloat","waFooter"].forEach(id=>{
       const el=document.getElementById(id); if(el) el.href=wa;
     });
-    // "book a call" buttons → scroll to demo widget + kick the bot into booking mode
     ["bookBtn","heroBookBtn","pricingBookBtn"].forEach(id=>{
       const b=document.getElementById(id);
-      if(b){ b.onclick=e=>{ e.preventDefault(); if(window.bookViaBot) window.bookViaBot(); }; }
+      if(b){ b.addEventListener("click", e=>{ e.preventDefault(); if(window.bookViaBot) window.bookViaBot(); }); }
     });
   }
-  // Pull the live WhatsApp number from the backend, then wire (fallback to config default).
   fetch(`${CONFIG.API_BASE}/api/config`).then(r=>r.json())
     .then(c=>{ if(c && c.whatsapp) CONFIG.WHATSAPP=c.whatsapp; })
     .catch(()=>{})
     .finally(wire);
 })();
 
-/* ── warm up the bot the moment someone opens the page (hides cold start) ── */
 fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
 
-/* ── live demo widget → talks to the bot API ── */
 (function(){
   const msgs=document.getElementById("demoMsgs");
   const form=document.getElementById("demoForm");
@@ -531,13 +549,11 @@ fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
   }
   function typing(){
     const t=document.createElement("div");
-    t.className="dtyping"; t.innerHTML="<span></span><span></span><span></span>";
+    t.className="dtyping"; t.setAttribute("aria-hidden","true");
+    t.innerHTML="<span></span><span></span><span></span>";
     msgs.appendChild(t); msgs.scrollTop=msgs.scrollHeight;
     return t;
   }
-  // POST once with a timeout. Railway free-tier can cold-start (502/503) or be
-  // slow, so we retry a couple of times before giving up — a cold start should
-  // never look "broken" to a visitor.
   async function postChat(text, timeoutMs){
     const ctrl=new AbortController();
     const to=setTimeout(()=>ctrl.abort(), timeoutMs);
@@ -545,7 +561,7 @@ fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
       const r=await fetch(`${CONFIG.API_BASE}/api/chat`,{
         method:"POST",
         headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({message:text, session_id:sessionId}),
+        body:JSON.stringify({message:text.slice(0,4000), session_id:sessionId}),
         signal:ctrl.signal
       });
       if(!r.ok) throw new Error("http "+r.status);
@@ -554,44 +570,40 @@ fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
   }
   async function send(text){
     if(busy||!text.trim())return;
-    busy=true; input.value="";
-    if(quick) quick.style.display="none";
+    busy=true; form.setAttribute("aria-busy","true"); input.value="";
+    if(quick) quick.hidden=true;
     add(text,"me");
     const t=typing();
     let data=null;
-    // up to 5 attempts (handles Railway cold-start: container can take ~30-60s to wake)
-    for(let attempt=1; attempt<=5 && !data; attempt++){
+    for(let attempt=1; attempt<=2 && !data; attempt++){
       try{
         data=await postChat(text, 60000);
       }catch(e){
-        if(attempt===5){
+        if(attempt===2){
           t.remove();
-          add("אופס, יש רגע עומס על השרת של ההדגמה 😅 אפשר לנסות שוב, או פשוט לשלוח לי הודעה ישירות בוואטסאפ ואענה לך מיד.","bot");
-          busy=false; input.focus(); return;
+          add("השרת של ההדגמה לא זמין כרגע. אפשר לנסות שוב או לשלוח הודעה בוואטסאפ.","bot");
+          busy=false; form.removeAttribute("aria-busy"); input.focus(); return;
         }
-        await new Promise(r=>setTimeout(r, 2000)); // pause, then retry (container is waking up)
+        await new Promise(r=>setTimeout(r, 2000));
       }
     }
     sessionId=data.session_id||sessionId;
     t.remove();
-    // Split on ||| to show as separate bubbles (like WhatsApp does)
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const parts = (data.response||"…").split(/\s*\|\|\|\s*/);
     parts.forEach((p,i)=>{
-      setTimeout(()=>add(p,"bot"), i*800);
+      setTimeout(()=>add(p,"bot"), reduce ? 0 : i*800);
     });
-    busy=false; input.focus();
+    busy=false; form.removeAttribute("aria-busy"); input.focus();
   }
   form.addEventListener("submit",e=>{e.preventDefault();send(input.value);});
   if(quick) quick.addEventListener("click",e=>{
     const b=e.target.closest("button"); if(b) send(b.dataset.q);
   });
-  // Scroll messages into view when keyboard opens on mobile
   input.addEventListener("focus",()=>setTimeout(()=>msgs.scrollTop=msgs.scrollHeight,400));
-  // Expose so the "book a call" buttons can drive the demo bot into booking mode.
   window.bookViaBot=function(){
     const demo=document.getElementById("demo");
-    if(demo){ demo.scrollIntoView({behavior:"smooth", block:"start"}); }
-    // Kick the bot straight into booking: it should greet + offer real slots + ask day/time.
+    if(demo){ demo.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"}); }
     setTimeout(()=>send("אני רוצה לקבוע שיחת ייעוץ — מתי יש זמנים פנויים?"), 500);
   };
 })();

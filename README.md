@@ -1,23 +1,24 @@
-# דוד מימון · אוטומציות ואתרים — Agency Website
+# Monaflows · דוד מימון אוטומציות
 
-One-page marketing site (Hebrew, RTL) for David Mimun Automations & Websites — an AI automation agency that builds human-like WhatsApp customer-service bots for e-commerce.
+One-page Hebrew RTL marketing site for custom AI WhatsApp customer-service bots.
 
 ## Stack
-- Single static `index.html` (HTML + CSS + vanilla JS, no build step)
-- Font: Heebo (Google Fonts)
-- Live demo chat widget calls the bot API: `POST https://web-production-e83e4.up.railway.app/api/chat`
+- Static `index.html` plus `privacy.html`, `terms.html`, `accessibility.html`
+- Local Heebo font (`fonts/heebo-vf.woff2`) — no Google Fonts request
+- Live demo chat: `POST` to the ChatbotDemo API (`CONFIG.API_BASE` in `index.html`)
 
 ## Deploy (Vercel)
 1. Import this repo in Vercel
-2. Framework preset: **Other** (it's static)
-3. Root directory: `/` · Build command: none · Output directory: `/`
+2. Framework preset: **Other**
+3. Root `/` · no build command · output `/`
 4. Deploy
 
 ## Config
-Edit the `CONFIG` block near the bottom of `index.html`:
-- `API_BASE` — bot backend URL
-- `WHATSAPP` — number (international, digits only)
-- `CALENDLY` — booking link
+In `index.html`, `CONFIG`:
+- `API_BASE` — ChatbotDemo origin (currently Northflank)
+- `WHATSAPP` — digits only for `wa.me`
+
+Legal pages use placeholders in dashed highlight until business details (address, ח.פ., training-off confirmation) are filled in.
 
 ## Contact
 - WhatsApp: 058-642-1825
