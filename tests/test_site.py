@@ -81,6 +81,12 @@ class HomepageRedesignTests(unittest.TestCase):
         self.assertIn("הדגמת צ׳אט", self.homepage)
         self.assertRegex(self.homepage, r"אינה הדגמה (קולית|טלפונית)")
 
+    def test_booking_ctas_require_an_explicit_chat_submission(self):
+        self.assertGreaterEqual(self.homepage.count("לתיאום דרך הצ׳אט"), 2)
+        booking_handler = self.homepage.split("window.bookViaBot=function(){", 1)[1]
+        booking_handler = booking_handler.split("\n  };\n})();", 1)[0]
+        self.assertNotIn("send(", booking_handler)
+
     def test_markup_uses_valid_document_and_figure_semantics(self):
         self.assertTrue(self.homepage.startswith("<!DOCTYPE html>"))
         self.assertIn('<figure class="system-map">', self.homepage)

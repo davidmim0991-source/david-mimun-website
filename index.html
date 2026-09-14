@@ -31,7 +31,7 @@
         <a href="#demo">הדגמה</a>
         <a href="#faq">שאלות נפוצות</a>
       </div>
-      <a class="header-cta" id="headerBookBtn" href="#demo">בואו נדבר</a>
+      <a class="header-cta" id="headerBookBtn" href="#demo">לתיאום דרך הצ׳אט</a>
       <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks" aria-label="פתיחת תפריט">
         <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
@@ -47,7 +47,7 @@
         <h1>נציגי AI שמדברים עם הלקוחות שלכם — <span>וגם עושים את העבודה</span></h1>
         <p class="hero-lead">נציגים טלפוניים שמנהלים שיחה טבעית, מבינים מה הלקוח צריך ומבצעים פעולות במערכות העסק. אותו שירות יכול לפעול גם ב‑WhatsApp.</p>
         <div class="ctas">
-          <a class="btn btn-primary" id="heroBookBtn" href="#demo">נקבע שיחת היכרות</a>
+          <a class="btn btn-primary" id="heroBookBtn" href="#demo">לתיאום דרך הצ׳אט</a>
           <a class="btn btn-secondary" href="#demo">להדגמת הצ׳אט</a>
         </div>
         <ul class="hero-points" aria-label="יתרונות מרכזיים">
@@ -280,7 +280,7 @@
         <p>בשיחה קצרה נמפה את סוגי הפניות, המערכות והיעדים שלכם — ונבדוק איפה נציג AI יכול לתת ערך אמיתי.</p>
       </div>
       <div class="final-actions">
-        <a class="btn btn-light" id="bookBtn" href="#demo">קבעו שיחת היכרות</a>
+        <a class="btn btn-light" id="bookBtn" href="#demo">לתיאום דרך הצ׳אט</a>
         <a class="btn btn-wa" id="waFinal" href="https://wa.me/972586421825" target="_blank" rel="noopener">שלחו הודעה ב‑WhatsApp</a>
         <small>ללא התחייבות · התאמה לפי הצרכים של העסק</small>
       </div>
@@ -476,7 +476,7 @@ fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
       behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",
       block:"start"
     });
-    setTimeout(()=>send("אני רוצה לקבוע שיחת ייעוץ — מתי יש זמנים פנויים?"),500);
+    setTimeout(()=>document.getElementById("demoInput")?.focus(),500);
   };
 })();
 </script>
