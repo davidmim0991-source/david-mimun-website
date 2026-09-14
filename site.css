@@ -537,7 +537,7 @@ nav{
   font-weight:850;
 }
 .system-nodes b{font-size:13px}
-.system-map>p{margin-block-start:18px;text-align:center;font-size:12px}
+.system-map>figcaption{margin-block-start:18px;color:var(--muted);text-align:center;font-size:12px}
 
 /* Benefits */
 .benefits-section{background:var(--ink-strong)}

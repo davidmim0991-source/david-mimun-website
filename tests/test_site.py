@@ -81,6 +81,12 @@ class HomepageRedesignTests(unittest.TestCase):
         self.assertIn("הדגמת צ׳אט", self.homepage)
         self.assertRegex(self.homepage, r"אינה הדגמה (קולית|טלפונית)")
 
+    def test_markup_uses_valid_document_and_figure_semantics(self):
+        self.assertTrue(self.homepage.startswith("<!DOCTYPE html>"))
+        self.assertIn('<figure class="system-map">', self.homepage)
+        self.assertIn("<figcaption>", self.homepage)
+        self.assertNotRegex(self.homepage, r"<div[^>]+aria-label=")
+
 
 class SharedThemeAndLegalTests(unittest.TestCase):
     def test_light_theme_tokens_are_defined(self):
@@ -97,6 +103,12 @@ class SharedThemeAndLegalTests(unittest.TestCase):
         )
         self.assertRegex(combined, r"טלפונ")
         self.assertNotRegex(combined, r"חנויות אונליין|עסקי איקומרס")
+
+    def test_legal_pages_use_standard_doctype(self):
+        for filename in ("privacy.html", "terms.html", "accessibility.html"):
+            with self.subTest(filename=filename):
+                content = (ROOT / filename).read_text(encoding="utf-8")
+                self.assertTrue(content.startswith("<!DOCTYPE html>"))
 
 
 if __name__ == "__main__":
