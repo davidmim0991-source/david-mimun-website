@@ -28,5 +28,5 @@ python3 -m unittest discover -s tests -v
 ```
 
 ## Contact
-- WhatsApp: 058-642-1825
-- Email: davidmim0991@gmail.com
+- WhatsApp: 058-795-7766
+- Email: david@monafows.com

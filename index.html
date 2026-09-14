@@ -284,7 +284,7 @@
       </div>
       <div class="final-actions">
         <a class="btn btn-light" id="bookBtn" href="#demo">לתיאום דרך הצ׳אט</a>
-        <a class="btn btn-wa" id="waFinal" href="https://wa.me/972586421825" target="_blank" rel="noopener">שלחו הודעה ב‑WhatsApp</a>
+        <a class="btn btn-wa" id="waFinal" href="https://wa.me/972587957766" target="_blank" rel="noopener">שלחו הודעה ב‑WhatsApp</a>
         <small>ללא התחייבות · התאמה לפי הצרכים של העסק</small>
       </div>
     </div>
@@ -304,8 +304,8 @@
       <span>נציגי AI לעסקים בישראל.</span>
     </div>
     <div class="contact">
-      <a id="waFooter" href="https://wa.me/972586421825" target="_blank" rel="noopener">WhatsApp: <bdi dir="ltr">058-642-1825</bdi></a>
-      <a href="mailto:davidmim0991@gmail.com"><bdi dir="ltr">davidmim0991@gmail.com</bdi></a>
+      <a id="waFooter" href="https://wa.me/972587957766" target="_blank" rel="noopener">WhatsApp: <bdi dir="ltr">058-795-7766</bdi></a>
+      <a href="mailto:david@monafows.com"><bdi dir="ltr">david@monafows.com</bdi></a>
     </div>
     <div class="legal">
       <a href="privacy.html">פרטיות</a>
@@ -316,7 +316,7 @@
   <div class="wrap copyright">© 2026 Monaflows · דוד מימון אוטומציות · כל הזכויות שמורות</div>
 </footer>
 
-<a class="wa-float" id="waFloat" href="https://wa.me/972586421825" target="_blank" rel="noopener" aria-label="שליחת הודעה ב‑WhatsApp">
+<a class="wa-float" id="waFloat" href="https://wa.me/972587957766" target="_blank" rel="noopener" aria-label="שליחת הודעה ב‑WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.6.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.7 4.3 3.8 1.6.7 2.2.7 3 .6.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.9-1.3A10 10 0 1 0 12 2Z"/></svg>
 </a>
 
@@ -330,7 +330,7 @@
 <script>
 const CONFIG = {
   API_BASE: "https://site--chatbotdemo--w9bgl48jpc64.code.run",
-  WHATSAPP: "972586421825",
+  WHATSAPP: "972587957766",
   WHATSAPP_MSG: "היי דוד, ראיתי את האתר ואשמח לשמוע על נציגי ה-AI הטלפוניים של Monaflows"
 };
 
@@ -386,10 +386,7 @@ const CONFIG = {
       });
     });
   }
-  fetch(`${CONFIG.API_BASE}/api/config`).then(response=>response.json())
-    .then(config=>{ if(config&&config.whatsapp) CONFIG.WHATSAPP=config.whatsapp; })
-    .catch(()=>{})
-    .finally(wire);
+  wire();
 })();
 
 fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
