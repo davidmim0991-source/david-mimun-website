@@ -50,7 +50,7 @@
         <h1>נציגי AI שמדברים עם הלקוחות שלכם — <span>וגם עושים את העבודה</span></h1>
         <div class="ctas">
           <a class="btn btn-primary" id="heroBookBtn" href="#demo">לתיאום דרך הצ׳אט</a>
-          <a class="btn btn-secondary" href="#demo">להדגמת הצ׳אט</a>
+          <a class="btn btn-secondary" id="heroDemoBtn" href="#demo">להדגמת הצ׳אט</a>
         </div>
         <ul class="hero-points" aria-label="יתרונות מרכזיים">
           <li>שיחה טבעית בעברית</li>
@@ -250,9 +250,26 @@
       <div>
         <div id="demoHost">
           <div id="demoBox">
+            <div class="wa-phone-status" aria-hidden="true">
+              <span data-wa-clock>9:41</span>
+              <span class="wa-phone-status-icons">
+                <i></i><i></i><i></i>
+              </span>
+            </div>
             <div class="dh">
-              <div class="cm-av" aria-hidden="true">P</div>
-              <div><b>פרדוס · עוזר AI</b><span>הדגמת טקסט · לא אדם</span></div>
+              <button type="button" class="wa-phone-back" id="demoBackBtn" aria-label="חזרה מההדגמה">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>1</span>
+              </button>
+              <img class="cm-av" src="icon.png" alt="" width="40" height="40">
+              <div>
+                <b>Monaflows</b>
+                <span>Business account</span>
+              </div>
+              <div class="wa-phone-calls" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="12.5" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m15 10 6-2.5v9.5L15 14.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M6.2 3.8h3.3l1.5 3.8-2.2 1.5a11.4 11.4 0 0 0 4.6 4.6l1.5-2.2 3.8 1.5v3.3a3 3 0 0 1-3 3C7.6 19.3 3.2 14.9 3.2 6.8a3 3 0 0 1 3-3Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+              </div>
             </div>
             <div id="demoMsgs" role="log" aria-live="polite" aria-relevant="additions">
               <div class="di">היי, אני פרדוס — בוט AI. אשמח לספר על השירות של Monaflows. מה תרצו לדעת?</div>
@@ -263,12 +280,20 @@
               <button type="button" data-q="כמה זה עולה?">כמה זה עולה?</button>
             </div>
             <form id="demoForm" autocomplete="off">
+              <span class="wa-composer-plus" aria-hidden="true">+</span>
               <label class="visually-hidden" for="demoInput">הודעה לבוט ההדגמה</label>
-              <input id="demoInput" name="message" type="text" maxlength="4000" placeholder="כתבו הודעה…" autocomplete="off">
-              <button type="submit" aria-label="שליחת ההודעה"><span aria-hidden="true">←</span></button>
+              <input id="demoInput" name="message" type="text" maxlength="4000" placeholder="Type a message..." autocomplete="off">
+              <span class="wa-composer-cam" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4.5 8.2h2.2l1.3-2.2h8l1.3 2.2h2.2A1.8 1.8 0 0 1 21.3 10v7.3a1.8 1.8 0 0 1-1.8 1.8H4.5A1.8 1.8 0 0 1 2.7 17.3V10a1.8 1.8 0 0 1 1.8-1.8Z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="13.4" r="3.1" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+              </span>
+              <button type="submit" class="wa-send" id="demoSend" aria-label="שליחת ההודעה">
+                <svg class="wa-icon-mic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3.5" width="6" height="11" rx="3" fill="currentColor"/><path d="M7 12a5 5 0 0 0 10 0M12 17v3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <svg class="wa-icon-go" viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12 16-8-6.5 16-2.2-6.3L4 12Z" fill="currentColor"/></svg>
+              </button>
             </form>
           </div>
         </div>
+        <p class="wa-phone-hint">לחצו על המסך כדי לפתוח את ההדגמה במסך מלא</p>
         <p class="chat-notice">מסירת מידע בצ׳אט היא רשות. המידע משמש למענה ולתיאום ייעוץ ומטופל כמפורט ב<a href="privacy.html">מדיניות הפרטיות</a>.</p>
       </div>
     </div>
@@ -339,9 +364,6 @@
 <script src="wa-demo.js"></script>
 
 <dialog id="chatDialog" closedby="any" aria-labelledby="chatDialogTitle">
-  <form method="dialog">
-    <button type="submit" class="close-overlay" aria-label="סגירת הצ׳אט">×</button>
-  </form>
   <h2 id="chatDialogTitle" class="visually-hidden">הדגמת צ׳אט עם בוט AI</h2>
 </dialog>
 
@@ -371,15 +393,40 @@ const CONFIG = {
   const dialog = document.getElementById("chatDialog");
   const host = document.getElementById("demoHost");
   const box = document.getElementById("demoBox");
-  const mock = document.getElementById("heroChatMock");
+  const back = document.getElementById("demoBackBtn");
+  const clock = box.querySelector("[data-wa-clock]");
+  function tickClock(){
+    if(!clock) return;
+    const now=new Date();
+    clock.textContent=now.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit",hour12:false});
+  }
+  tickClock();
+  window.setInterval(tickClock,30000);
   function openChat(){
+    if(dialog.open) return;
     dialog.appendChild(box);
+    document.body.classList.add("wa-page-demo");
     if(typeof dialog.showModal === "function") dialog.showModal();
     else dialog.setAttribute("open","");
-    document.getElementById("demoInput").focus();
+    const input=document.getElementById("demoInput");
+    if(input) input.focus();
   }
-  dialog.addEventListener("close", ()=>{ if(box.parentNode!==host) host.appendChild(box); });
-  if (mock) mock.addEventListener("click", openChat);
+  function closeChat(){
+    if(dialog.open) dialog.close();
+  }
+  dialog.addEventListener("close", ()=>{
+    document.body.classList.remove("wa-page-demo");
+    if(box.parentNode!==host) host.appendChild(box);
+  });
+  box.addEventListener("click", ()=>{
+    if(!dialog.open) openChat();
+  });
+  if(back) back.addEventListener("click", event=>{
+    event.preventDefault();
+    event.stopPropagation();
+    if(dialog.open) closeChat();
+    else openChat();
+  });
   if (!("closedBy" in HTMLDialogElement.prototype)) {
     dialog.addEventListener("click", event=>{
       if(event.target!==dialog) return;
@@ -388,6 +435,10 @@ const CONFIG = {
       if(!inside&&dialog.open) dialog.close();
     });
   }
+  window.openLiveDemo=openChat;
+  dialog.addEventListener("click", event=>{
+    if(event.target===dialog && dialog.open) dialog.close();
+  });
 })();
 
 (function(){
@@ -396,11 +447,12 @@ const CONFIG = {
     ["waFinal","waFloat","waFooter"].forEach(id=>{
       const el=document.getElementById(id); if(el) el.href=wa;
     });
-    ["bookBtn","heroBookBtn","headerBookBtn"].forEach(id=>{
+    ["bookBtn","heroBookBtn","headerBookBtn","heroDemoBtn"].forEach(id=>{
       const button=document.getElementById(id);
       if(button) button.addEventListener("click", event=>{
         event.preventDefault();
-        if(window.bookViaBot) window.bookViaBot();
+        if(window.openLiveDemo) window.openLiveDemo();
+        else if(window.bookViaBot) window.bookViaBot();
       });
     });
   }
@@ -416,6 +468,11 @@ fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
   const quick=document.getElementById("dquick");
   let sessionId=null;
   let busy=false;
+
+  function syncSend(){
+    form.classList.toggle("has-text", Boolean(input.value.trim()));
+  }
+  input.addEventListener("input", syncSend);
 
   function add(text,who){
     const message=document.createElement("div");
@@ -455,6 +512,7 @@ fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
     busy=true;
     form.setAttribute("aria-busy","true");
     input.value="";
+    syncSend();
     if(quick) quick.hidden=true;
     add(text,"me");
     const indicator=typing();
@@ -493,11 +551,7 @@ fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
   });
   input.addEventListener("focus",()=>setTimeout(()=>msgs.scrollTop=msgs.scrollHeight,400));
   window.bookViaBot=function(){
-    document.getElementById("demo")?.scrollIntoView({
-      behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",
-      block:"start"
-    });
-    setTimeout(()=>document.getElementById("demoInput")?.focus(),500);
+    if(window.openLiveDemo) window.openLiveDemo();
   };
 })();
 </script>
