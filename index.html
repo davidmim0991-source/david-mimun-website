@@ -198,10 +198,10 @@
               </span>
             </div>
             <div class="dh">
-              <button type="button" class="wa-phone-back" id="demoBackBtn" aria-label="חזרה מההדגמה">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="wa-phone-back" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <span>1</span>
-              </button>
+              </span>
               <img class="cm-av" src="icon.png" alt="" width="40" height="40">
               <div>
                 <b>Monaflows</b>
@@ -234,7 +234,6 @@
             </form>
           </div>
         </div>
-        <p class="wa-phone-hint">לחצו על המסך כדי לפתוח את ההדגמה במסך מלא</p>
         <p class="chat-notice">מסירת מידע בצ׳אט היא רשות. המידע משמש למענה ולתיאום ייעוץ ומטופל כמפורט ב<a href="privacy.html">מדיניות הפרטיות</a>.</p>
       </div>
     </div>
@@ -304,10 +303,6 @@
 
 <script src="wa-demo.js"></script>
 
-<dialog id="chatDialog" closedby="any" aria-labelledby="chatDialogTitle">
-  <h2 id="chatDialogTitle" class="visually-hidden">הדגמת צ׳אט עם בוט AI</h2>
-</dialog>
-
 <script>
 const CONFIG = {
   API_BASE: "https://site--chatbotdemo--w9bgl48jpc64.code.run",
@@ -331,10 +326,7 @@ const CONFIG = {
 })();
 
 (function(){
-  const dialog = document.getElementById("chatDialog");
-  const host = document.getElementById("demoHost");
   const box = document.getElementById("demoBox");
-  const back = document.getElementById("demoBackBtn");
   const clock = box.querySelector("[data-wa-clock]");
   function tickClock(){
     if(!clock) return;
@@ -343,43 +335,6 @@ const CONFIG = {
   }
   tickClock();
   window.setInterval(tickClock,30000);
-  function openChat(){
-    if(dialog.open) return;
-    dialog.appendChild(box);
-    document.body.classList.add("wa-page-demo");
-    if(typeof dialog.showModal === "function") dialog.showModal();
-    else dialog.setAttribute("open","");
-    const input=document.getElementById("demoInput");
-    if(input) input.focus();
-  }
-  function closeChat(){
-    if(dialog.open) dialog.close();
-  }
-  dialog.addEventListener("close", ()=>{
-    document.body.classList.remove("wa-page-demo");
-    if(box.parentNode!==host) host.appendChild(box);
-  });
-  box.addEventListener("click", ()=>{
-    if(!dialog.open) openChat();
-  });
-  if(back) back.addEventListener("click", event=>{
-    event.preventDefault();
-    event.stopPropagation();
-    if(dialog.open) closeChat();
-    else openChat();
-  });
-  if (!("closedBy" in HTMLDialogElement.prototype)) {
-    dialog.addEventListener("click", event=>{
-      if(event.target!==dialog) return;
-      const rect=dialog.getBoundingClientRect();
-      const inside=rect.top<=event.clientY&&event.clientY<=rect.bottom&&rect.left<=event.clientX&&event.clientX<=rect.right;
-      if(!inside&&dialog.open) dialog.close();
-    });
-  }
-  window.openLiveDemo=openChat;
-  dialog.addEventListener("click", event=>{
-    if(event.target===dialog && dialog.open) dialog.close();
-  });
 })();
 
 (function(){
@@ -390,10 +345,9 @@ const CONFIG = {
     });
     ["bookBtn","heroBookBtn","headerBookBtn","heroDemoBtn"].forEach(id=>{
       const button=document.getElementById(id);
-      if(button) button.addEventListener("click", event=>{
-        event.preventDefault();
-        if(window.openLiveDemo) window.openLiveDemo();
-        else if(window.bookViaBot) window.bookViaBot();
+      if(button) button.addEventListener("click", ()=>{
+        const input=document.getElementById("demoInput");
+        if(input) input.focus();
       });
     });
   }
@@ -492,7 +446,8 @@ fetch(`${CONFIG.API_BASE}/api/health`).catch(()=>{});
   });
   input.addEventListener("focus",()=>setTimeout(()=>msgs.scrollTop=msgs.scrollHeight,400));
   window.bookViaBot=function(){
-    if(window.openLiveDemo) window.openLiveDemo();
+    const input=document.getElementById("demoInput");
+    if(input) input.focus();
   };
 })();
 </script>

@@ -87,6 +87,15 @@ class HomepageRedesignTests(unittest.TestCase):
         booking_handler = booking_handler.split("\n  };\n})();", 1)[0]
         self.assertNotIn("send(", booking_handler)
 
+    def test_live_demo_stays_inline_on_the_page(self):
+        self.assertIn('id="demoForm"', self.homepage)
+        self.assertIn('id="demoInput"', self.homepage)
+        self.assertNotIn("<dialog", self.homepage)
+        self.assertNotIn("showModal", self.homepage)
+        self.assertNotIn("openLiveDemo", self.homepage)
+        self.assertNotIn("wa-page-demo", self.homepage)
+        self.assertNotIn("מסך מלא", self.homepage)
+
     def test_markup_uses_valid_document_and_figure_semantics(self):
         self.assertTrue(self.homepage.startswith("<!DOCTYPE html>"))
         self.assertIn('<figure class="wa-demo"', self.homepage)
