@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140">
+  <g fill="none" stroke="#3d6b6a" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" opacity=".16">
+    <rect x="12" y="10" width="20" height="14" rx="4"/>
+    <path d="M18 24v3l3-1.5 3 1.5v-3"/>
+    <circle cx="58" cy="18" r="6"/>
+    <path d="M55.8 18.2l1.8 1.8 3.6-3.7"/>
+    <path d="M88 12h16a5 5 0 0 1 5 5v7H93a5 5 0 0 1-5-5z"/>
+    <rect x="118" y="16" width="12" height="10" rx="3"/>
+    <path d="M121 16v-2h6v2"/>
+    <circle cx="24" cy="52" r="5"/>
+    <path d="M24 49.6v2.6l1.8 1.2"/>
+    <rect x="46" y="46" width="18" height="13" rx="4"/>
+    <path d="M72 50h14"/>
+    <path d="M72 56h9"/>
+    <path d="M108 48c7 0 12 4 12 9"/>
+    <circle cx="120" cy="57" r="1.8"/>
+    <path d="M10 86h14c3 0 4.5 2 4.5 4.5V98H14.5c-3 0-4.5-2-4.5-4.5z"/>
+    <rect x="48" y="84" width="16" height="12" rx="3"/>
+    <path d="M53 84v-2.5h6V84"/>
+    <circle cx="90" cy="92" r="5.5"/>
+    <path d="M88 92.2l1.5 1.5 3.2-3.3"/>
+    <path d="M112 86h16a5 5 0 0 1 5 5v6h-16a5 5 0 0 1-5-5z"/>
+    <rect x="18" y="116" width="14" height="11" rx="3"/>
+    <path d="M44 118h12"/>
+    <path d="M44 124h18"/>
+    <circle cx="82" cy="122" r="5"/>
+    <path d="M82 119.6v2.4l1.6 1.2"/>
+    <path d="M104 116h16c3 0 5 2 5 5v8h-16c-3 0-5-2-5-5z"/>
+  </g>
+</svg>

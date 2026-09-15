@@ -71,6 +71,8 @@ class HomepageRedesignTests(unittest.TestCase):
             "contact",
         }
         self.assertTrue(required_ids.issubset(self.parser.ids))
+        self.assertIn("waDemo", self.parser.ids)
+        self.assertIn("wa-demo.js", self.homepage)
 
     def test_unverified_metrics_and_ecommerce_positioning_are_removed(self):
         visible_copy = re.sub(r"<script.*?</script>", "", self.homepage, flags=re.DOTALL)

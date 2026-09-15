@@ -48,7 +48,6 @@
       <div class="hero-copy">
         <div class="eyebrow"><span class="status-dot" aria-hidden="true"></span> שירות לקוחות מבוסס AI</div>
         <h1>נציגי AI שמדברים עם הלקוחות שלכם — <span>וגם עושים את העבודה</span></h1>
-        <p class="hero-lead">נציגים טלפוניים שמנהלים שיחה טבעית, מבינים מה הלקוח צריך ומבצעים פעולות במערכות העסק. אותו שירות יכול לפעול גם ב‑WhatsApp.</p>
         <div class="ctas">
           <a class="btn btn-primary" id="heroBookBtn" href="#demo">לתיאום דרך הצ׳אט</a>
           <a class="btn btn-secondary" href="#demo">להדגמת הצ׳אט</a>
@@ -60,20 +59,37 @@
         </ul>
       </div>
 
-      <button type="button" class="call-visual" id="heroChatMock" aria-haspopup="dialog" aria-controls="chatDialog">
-        <span class="call-label">שיחה נכנסת</span>
-        <span class="call-business">שירות הלקוחות של העסק</span>
-        <span class="call-status"><i aria-hidden="true"></i> נציג AI בשיחה</span>
-        <span class="waveform" aria-hidden="true">
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        </span>
-        <span class="call-transcript">״בשמחה. מצאתי את ההזמנה — תרצה שאעדכן את מועד האספקה?״</span>
-        <span class="call-meta">
-          <span><b>02:14</b> זמן שיחה</span>
-          <span><b>פעולה</b> הזמנה אותרה</span>
-        </span>
-        <span class="open-demo">לחצו לפתיחת הדגמת צ׳אט <span aria-hidden="true">←</span></span>
-      </button>
+      <figure class="wa-demo" id="waDemo">
+        <div class="wa-demo-frame">
+          <header class="wa-demo-header">
+            <img class="wa-demo-avatar" src="icon.png" alt="" width="40" height="40">
+            <div class="wa-demo-identity">
+              <p class="wa-demo-name">Monaflows</p>
+              <p class="wa-demo-presence"><span class="wa-demo-online" aria-hidden="true"></span> מחובר</p>
+            </div>
+            <button type="button" class="wa-demo-pause" data-wa-pause aria-pressed="false" aria-label="השהיית ההדגמה">
+              <svg class="wa-icon-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/></svg>
+              <svg class="wa-icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.8v12.4L18 12 8 5.8Z"/></svg>
+            </button>
+          </header>
+          <section class="wa-demo-thread" data-wa-thread aria-hidden="true">
+            <p class="wa-date is-visible">היום</p>
+          </section>
+          <div class="wa-demo-composer" aria-hidden="true">
+            <span class="wa-demo-composer-btn">
+              <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </span>
+            <span class="wa-demo-composer-field">הודעה</span>
+            <span class="wa-demo-composer-send">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="9" y="3.5" width="6" height="11" rx="3" fill="currentColor"/>
+                <path d="M7 12a5 5 0 0 0 10 0M12 17v3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        <figcaption class="wa-demo-caption">הדגמה של נציג AI ב‑WhatsApp</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -320,6 +336,8 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.6.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.7 4.3 3.8 1.6.7 2.2.7 3 .6.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.9-1.3A10 10 0 1 0 12 2Z"/></svg>
 </a>
 
+<script src="wa-demo.js"></script>
+
 <dialog id="chatDialog" closedby="any" aria-labelledby="chatDialogTitle">
   <form method="dialog">
     <button type="submit" class="close-overlay" aria-label="סגירת הצ׳אט">×</button>
@@ -361,7 +379,7 @@ const CONFIG = {
     document.getElementById("demoInput").focus();
   }
   dialog.addEventListener("close", ()=>{ if(box.parentNode!==host) host.appendChild(box); });
-  mock.addEventListener("click", openChat);
+  if (mock) mock.addEventListener("click", openChat);
   if (!("closedBy" in HTMLDialogElement.prototype)) {
     dialog.addEventListener("click", event=>{
       if(event.target!==dialog) return;
