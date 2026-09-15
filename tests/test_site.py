@@ -61,9 +61,7 @@ class HomepageRedesignTests(unittest.TestCase):
 
     def test_new_information_architecture_is_present(self):
         required_ids = {
-            "problem",
             "channels",
-            "capabilities",
             "benefits",
             "how",
             "demo",
@@ -91,8 +89,8 @@ class HomepageRedesignTests(unittest.TestCase):
 
     def test_markup_uses_valid_document_and_figure_semantics(self):
         self.assertTrue(self.homepage.startswith("<!DOCTYPE html>"))
-        self.assertIn('<figure class="system-map">', self.homepage)
-        self.assertIn("<figcaption>", self.homepage)
+        self.assertIn('<figure class="wa-demo"', self.homepage)
+        self.assertIn("<figcaption", self.homepage)
         self.assertNotRegex(self.homepage, r"<div[^>]+aria-label=")
 
 

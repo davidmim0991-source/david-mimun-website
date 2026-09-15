@@ -160,7 +160,7 @@ nav{
   margin:0 auto 50px;
   text-align:center;
 }
-.section-head h2,.split-intro h2,.capability-copy h2{
+.section-head h2{
   margin-block-end:18px;
   font-size:clamp(34px,4.2vw,52px);
   font-weight:850;
@@ -563,44 +563,6 @@ nav{
   }
 }
 
-/* Problem */
-.problem-section{background:var(--surface)}
-.split-intro{
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  align-items:end;
-  gap:80px;
-  margin-block-end:46px;
-}
-.split-intro h2{margin:0;max-width:600px}
-.split-intro>p{font-size:19px}
-.problem-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-.problem-card{
-  min-height:280px;
-  border:1px solid var(--line-soft);
-  border-radius:var(--radius);
-  background:var(--bg);
-  padding:30px;
-}
-.line-icon{
-  width:48px;
-  height:48px;
-  display:grid;
-  place-items:center;
-  margin-block-end:42px;
-  border:1px solid #a8cecf;
-  border-radius:14px;
-  background:var(--primary-soft);
-  color:var(--primary-dark);
-  padding:11px;
-}
-.problem-card h3{margin-block-end:9px;font-size:21px}
-.problem-card p{font-size:16px}
-
 /* Channels */
 .channels-section{background:var(--bg)}
 .channel-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:22px}
@@ -644,72 +606,6 @@ nav{
 .check-list{display:flex;flex-direction:column;gap:12px;list-style:none}
 .check-list li{display:flex;gap:10px;color:var(--muted-strong);font-size:15px}
 .check-list li::before{content:"✓";color:var(--primary);font-weight:900}
-
-/* Capabilities */
-.capabilities-section{
-  border-block:1px solid var(--line-soft);
-  background:var(--surface);
-}
-.capabilities{
-  display:grid;
-  grid-template-columns:.88fr 1.12fr;
-  align-items:center;
-  gap:84px;
-}
-.capability-copy p:not(.kicker){margin-block-end:16px}
-.system-map{
-  border:1px solid var(--line);
-  border-radius:var(--radius-lg);
-  background:var(--bg);
-  padding:34px;
-  box-shadow:var(--shadow-soft);
-}
-.agent-node{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  border:1px solid #8fb9c2;
-  border-radius:16px;
-  background:var(--surface);
-  padding:18px;
-}
-.node-mark{
-  width:46px;
-  height:46px;
-  display:grid;
-  place-items:center;
-  border-radius:13px;
-  background:linear-gradient(135deg,var(--primary),var(--blue));
-  color:#fff;
-  font-size:20px;
-  font-weight:900;
-}
-.agent-node b,.agent-node small{display:block}
-.agent-node small{color:var(--muted);font-size:13px}
-.connector{width:1px;height:34px;margin:auto;background:var(--line)}
-.system-nodes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.system-nodes div{
-  min-width:0;
-  border:1px solid var(--line-soft);
-  border-radius:14px;
-  background:var(--surface);
-  padding:14px 8px;
-  text-align:center;
-}
-.system-nodes span{
-  width:34px;
-  height:34px;
-  display:grid;
-  place-items:center;
-  margin:0 auto 8px;
-  border-radius:10px;
-  background:var(--surface-blue);
-  color:var(--blue-dark);
-  font-size:12px;
-  font-weight:850;
-}
-.system-nodes b{font-size:13px}
-.system-map>figcaption{margin-block-start:18px;color:var(--muted);text-align:center;font-size:12px}
 
 /* Benefits */
 .benefits-section{background:var(--ink-strong)}
@@ -1136,8 +1032,8 @@ body.wa-page-demo .wa-float{display:none}
   .hero-copy{max-width:760px}
   .wa-demo{width:min(100%,400px)}
   .wa-demo-frame{transform:none}
-  .split-intro,.capabilities,.demo-wrap{grid-template-columns:1fr;gap:42px}
-  .problem-grid,.benefit-grid{grid-template-columns:repeat(2,1fr)}
+  .demo-wrap{grid-template-columns:1fr;gap:42px}
+  .benefit-grid{grid-template-columns:repeat(2,1fr)}
   .channel-grid{grid-template-columns:1fr}
   .channel-card>p{min-height:auto}
   .steps{grid-template-columns:repeat(2,1fr)}
@@ -1165,15 +1061,10 @@ body.wa-page-demo .wa-float{display:none}
   .hero-points{flex-direction:column;gap:8px}
   .wa-demo-frame{border-radius:24px}
   .wa-demo-thread{height:268px}
-  .split-intro{gap:22px}
-  .section-head h2,.split-intro h2,.capability-copy h2{font-size:clamp(31px,9vw,42px)}
-  .problem-grid,.benefit-grid{grid-template-columns:1fr}
-  .problem-card{min-height:auto}
-  .line-icon{margin-block-end:28px}
+  .section-head h2{font-size:clamp(31px,9vw,42px)}
+  .benefit-grid{grid-template-columns:1fr}
   .channel-card{border-radius:20px;padding:26px 22px}
   .channel-card h3{font-size:25px}
-  .system-map{padding:20px 14px}
-  .system-nodes{grid-template-columns:repeat(2,1fr)}
   .benefit-grid{gap:1px}
   .benefit-grid article{min-height:auto;padding:28px 22px}
   .benefit-grid h3{margin-block:24px 8px}
